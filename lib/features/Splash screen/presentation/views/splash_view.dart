@@ -3,6 +3,7 @@ import 'package:final_project/core/utils/app_images.dart';
 import 'package:final_project/core/utils/app_strings.dart';
 import 'package:final_project/core/utils/app_text_styles.dart';
 import 'package:final_project/features/Auth/presentation/views/signin_view.dart';
+import 'package:final_project/features/Splash%20screen/presentation/functions/custom_navigationWith_Animation.dart';
 import 'package:final_project/features/Splash%20screen/presentation/widgets/custom_logo.dart';
 import 'package:final_project/features/Splash%20screen/presentation/widgets/loading_bottom.dart';
 import 'package:final_project/features/Splash%20screen/presentation/widgets/loading_circle.dart';
@@ -41,7 +42,7 @@ class _SplashViewState extends State<SplashView> with TickerProviderStateMixin {
       duration: const Duration(milliseconds: 2600),
     );
 
-    // ===== LOADING LOOP =====
+
     _loadingController = AnimationController(
       vsync: this,
       duration: const Duration(milliseconds: 2000),
@@ -90,23 +91,10 @@ class _SplashViewState extends State<SplashView> with TickerProviderStateMixin {
 
     _mainController.forward();
 
-    Future.delayed(const Duration(milliseconds: 5600), _goToSignIn);
+    // ignore: use_build_context_synchronously
+    Future.delayed(const Duration(milliseconds: 5600), () => goToSignIn(context));
   }
 
-  void _goToSignIn() {
-    Navigator.of(context).pushReplacement(
-      PageRouteBuilder(
-        transitionDuration: const Duration(milliseconds: 700),
-        pageBuilder: (_, __, ___) => const SignInView(),
-        transitionsBuilder: (_, animation, __, child) {
-          return FadeTransition(
-            opacity: animation,
-            child: child,
-          );
-        },
-      ),
-    );
-  }
 
   @override
   void dispose() {

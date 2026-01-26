@@ -1,3 +1,6 @@
+import 'package:final_project/features/Splash%20screen/presentation/animation/opacity_loading_circle_animation.dart';
+import 'package:final_project/features/Splash%20screen/presentation/animation/rotation_loading_circle_animation.dart';
+import 'package:final_project/features/Splash%20screen/presentation/animation/scale_loading_circle_animation.dart';
 import 'package:flutter/material.dart';
 
 class LoadingCircle extends StatelessWidget {
@@ -19,51 +22,13 @@ class LoadingCircle extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     // ===== SCALE (Pulse smooth) =====
-    final scale = TweenSequence<double>([
-      TweenSequenceItem(
-        tween: Tween(begin: 0.95, end: 1.05),
-        weight: 50,
-      ),
-      TweenSequenceItem(
-        tween: Tween(begin: 1.05, end: 0.95),
-        weight: 50,
-      ),
-    ]).animate(
-      CurvedAnimation(
-        parent: controller,
-        curve: Interval(
-          phase,
-          1.0,
-          curve: Curves.easeInOut,
-        ),
-      ),
-    );
+    Animation<double> scale = scaleAnimation(controller, phase);
 
     // ===== OPACITY (Breathing) =====
-    final opacity = TweenSequence<double>([
-      TweenSequenceItem(
-        tween: Tween(begin: 0.25, end: 0.55),
-        weight: 50,
-      ),
-      TweenSequenceItem(
-        tween: Tween(begin: 0.55, end: 0.25),
-        weight: 50,
-      ),
-    ]).animate(
-      CurvedAnimation(
-        parent: controller,
-        curve: Interval(
-          phase,
-          1.0,
-          curve: Curves.easeInOut,
-        ),
-      ),
-    );
+    Animation<double> opacity = opacityAnimation(controller, phase);
 
     // ===== ROTATION (Infinite smooth) =====
-    final rotation = Tween<double>(begin: 0, end: 1).animate(
-      controller,
-    );
+    Animation<double> rotation = rotaionAnimation(controller);
 
     return Positioned(
       top: MediaQuery.of(context).size.height * top,

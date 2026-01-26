@@ -16,7 +16,6 @@ class Mokhi extends StatelessWidget {
       home: SplashView(),
       debugShowCheckedModeBanner: false,
       routes: {
-   
         '/signin': (context) => const SignInView(),
       },
     );
