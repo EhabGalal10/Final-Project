@@ -1,4 +1,4 @@
-abstract class AppConstant {
+abstract class AppStrings {
   //! splash Screen
   static const String appName = 'Mokhi';
   static const String subtitleSplash = 'AI-Powered Brain MRI Analysis';

@@ -1,14 +1,16 @@
 // ignore_for_file: prefer_single_quotes
 class Assets {
   Assets._();
-  
+
   /// Assets for assetsImagesCircleTransparent
   /// assets/images/circleTransparent.png
-  static const String assetsImagesCircleTransparent = "assets/images/circleTransparent.png";
+  static const String assetsImagesCircleTransparent =
+      "assets/images/circleTransparent.png";
 
   /// Assets for assetsImagesDownloadReport
   /// assets/images/downloadReport.png
-  static const String assetsImagesDownloadReport = "assets/images/downloadReport.png";
+  static const String assetsImagesDownloadReport =
+      "assets/images/downloadReport.png";
 
   /// Assets for assetsImagesFindDoctor
   /// assets/images/findDoctor.png
@@ -20,7 +22,8 @@ class Assets {
 
   /// Assets for assetsImagesImportantNotice
   /// assets/images/importantNotice.png
-  static const String assetsImagesImportantNotice = "assets/images/importantNotice.png";
+  static const String assetsImagesImportantNotice =
+      "assets/images/importantNotice.png";
 
   /// Assets for assetsImagesLargeCycle
   /// assets/images/largeCycle.png
@@ -52,10 +55,11 @@ class Assets {
 
   /// Assets for assetsImagesVectorOne
   /// assets/images/vectorOne.png
-  static const String assetsImagesVectorOne = "assets/images/vectorOne.png";
+  // static const String assetsImagesVectorOne = "assets/images/vectorOne.png";
+  static const String assetsImagesVectorOneSvg = "assets/images/vectorOne.svg";
 
   /// Assets for assetsImagesVectorTwo
   /// assets/images/vectorTwo.png
-  static const String assetsImagesVectorTwo = "assets/images/vectorTwo.png";
+  // static const String assetsImagesVectorTwo = "assets/images/vectorTwo.png";
+  static const String assetsImagesVectorTwoSvg = "assets/images/vectorTwo.svg";
 }
-

@@ -1,3 +1,4 @@
+import 'package:final_project/features/Auth/presentation/views/signin_view.dart';
 import 'package:final_project/features/Splash%20screen/presentation/views/splash_view.dart';
 import 'package:flutter/material.dart';
 
@@ -12,7 +13,12 @@ class Mokhi extends StatelessWidget {
   Widget build(BuildContext context) {
     return MaterialApp(
       title: 'Mokhi App',
-      home:SplashScreen(),
+      home: SplashView(),
+      debugShowCheckedModeBanner: false,
+      routes: {
+   
+        '/signin': (context) => const SignInView(),
+      },
     );
   }
 }
