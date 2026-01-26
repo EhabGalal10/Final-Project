@@ -1,4 +1,5 @@
 import 'package:final_project/features/Auth/presentation/views/signin_view.dart';
+import 'package:final_project/features/Auth/presentation/views/signup_view.dart';
 import 'package:final_project/features/Splash%20screen/presentation/views/splash_view.dart';
 import 'package:flutter/material.dart';
 
@@ -17,6 +18,7 @@ class Mokhi extends StatelessWidget {
       debugShowCheckedModeBanner: false,
       routes: {
         '/signin': (context) => const SignInView(),
+        '/signup': (context) => const SignupView(),
       },
     );
   }

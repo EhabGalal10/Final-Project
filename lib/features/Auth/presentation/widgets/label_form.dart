@@ -1,4 +1,3 @@
-import 'package:final_project/core/utils/app_text_styles.dart';
 import 'package:flutter/material.dart';
 
 class LabelForm extends StatelessWidget {
@@ -8,7 +7,7 @@ class LabelForm extends StatelessWidget {
   Widget build(BuildContext context) {
     return Align(
       alignment: Alignment.centerLeft,
-      child: Text(label, style: AppTextStyles.interMediumstyle14),
+      child: Text(label, style: TextStyle(fontSize: 16)),
     );
   }
 }

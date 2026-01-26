@@ -17,19 +17,20 @@ class FormLogin extends StatelessWidget {
           children: [
             LabelForm(label: AppStrings.email),
             SizedBox(height: 8),
-            CutomTextField(
+            CustomTextField(
               hintText: AppStrings.enterYourEmail,
               icon: Icons.email,
             ),
             SizedBox(height: 16),
             LabelForm(label: AppStrings.password),
             SizedBox(height: 8),
-            CutomTextField(
+            CustomTextField(
               hintText: AppStrings.enterYourPassword,
               icon: Icons.lock,
+              obscureText: true,
             ),
             SizedBox(height: h * 0.1),
-            CustomButton(),
+            CustomButton(label: AppStrings.logIn, onPressed: () {}),
             SizedBox(height: 32),
           ],
         ),
@@ -37,4 +38,3 @@ class FormLogin extends StatelessWidget {
     );
   }
 }
-

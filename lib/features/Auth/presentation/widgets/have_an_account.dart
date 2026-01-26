@@ -3,9 +3,10 @@ import 'package:final_project/core/utils/app_text_styles.dart';
 import 'package:flutter/material.dart';
 
 class HaveAnAccount extends StatelessWidget {
-  const HaveAnAccount({super.key, required this.actionLabel, required this.label});
+  const HaveAnAccount({super.key, required this.actionLabel, required this.label,required this.onTap});
   final String actionLabel;
   final String label;
+  final VoidCallback? onTap ;
   @override
   Widget build(BuildContext context) {
     return Row(
@@ -16,10 +17,13 @@ class HaveAnAccount extends StatelessWidget {
           label,
           style: AppTextStyles.inter400style16,
         ),
-        Text(
-          actionLabel,
-          style: AppTextStyles.inter300style18.copyWith(
-            color: AppColors.primaryColor,
+        GestureDetector(
+          onTap:onTap,
+          child: Text(
+            actionLabel,
+            style: AppTextStyles.inter300style18.copyWith(
+              color: AppColors.primaryColor,
+            ),
           ),
         ),
       ],

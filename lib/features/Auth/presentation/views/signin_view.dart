@@ -3,7 +3,7 @@ import 'package:final_project/core/utils/app_strings.dart';
 import 'package:final_project/core/utils/app_text_styles.dart';
 import 'package:final_project/features/Auth/presentation/widgets/form_login.dart';
 import 'package:final_project/features/Auth/presentation/widgets/have_an_account.dart';
-import 'package:final_project/features/Auth/presentation/widgets/sub_logo.dart';
+import 'package:final_project/features/Auth/presentation/widgets/sub_logo_signin.dart';
 import 'package:flutter/material.dart';
 
 class SignInView extends StatelessWidget {
@@ -29,7 +29,7 @@ class SignInView extends StatelessWidget {
         child: CustomScrollView(
           slivers: [
             SliverToBoxAdapter(child: SizedBox(height: h * 0.12)),
-            SliverToBoxAdapter(child: SubLogo()),
+            SliverToBoxAdapter(child: SubLogoSignin()),
             SliverToBoxAdapter(child: SizedBox(height: 24)),
             SliverToBoxAdapter(
               child: Text(
@@ -50,6 +50,9 @@ class SignInView extends StatelessWidget {
             SliverToBoxAdapter(child: FormLogin()),
             SliverToBoxAdapter(
               child: HaveAnAccount(
+                onTap: () {
+                  Navigator.pushNamed(context, '/signup');
+                },
                 label: AppStrings.dontHaveAnAccount,
                 actionLabel: AppStrings.signUp,
               ),

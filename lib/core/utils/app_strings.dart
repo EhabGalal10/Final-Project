@@ -9,6 +9,13 @@ abstract class AppStrings {
   static const String enterYourEmail = 'Enter your email';
   static const String password = 'Password';
   static const String enterYourPassword = 'Enter your password';
+  static const String confirmYourPassword = 'Confirm your password';
+
+  static const String enterFullName = 'Enter your full name';
+  static const String fullName = 'Full Name';
+  static const String confirmPassword = 'Confirm Password';
+
+
   static const String loginButton = 'Log In';
   static const String dontHaveAnAccount = "Don't have an account? ";
   static const String signUp = 'Sign up';
