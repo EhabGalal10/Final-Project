@@ -2,11 +2,11 @@ import 'package:final_project/core/utils/app_colors.dart';
 import 'package:final_project/core/utils/app_images.dart';
 import 'package:final_project/core/utils/app_strings.dart';
 import 'package:final_project/core/utils/app_text_styles.dart';
-import 'package:final_project/features/Auth/presentation/views/signin_view.dart';
 import 'package:final_project/features/Splash%20screen/presentation/functions/custom_navigationWith_Animation.dart';
 import 'package:final_project/features/Splash%20screen/presentation/widgets/custom_logo.dart';
 import 'package:final_project/features/Splash%20screen/presentation/widgets/loading_bottom.dart';
 import 'package:final_project/features/Splash%20screen/presentation/widgets/loading_circle.dart';
+import 'package:final_project/features/Splash%20screen/presentation/widgets/text_splash.dart';
 import 'package:flutter/material.dart';
 
 class SplashView extends StatefulWidget {
@@ -41,7 +41,6 @@ class _SplashViewState extends State<SplashView> with TickerProviderStateMixin {
       vsync: this,
       duration: const Duration(milliseconds: 2600),
     );
-
 
     _loadingController = AnimationController(
       vsync: this,
@@ -92,9 +91,8 @@ class _SplashViewState extends State<SplashView> with TickerProviderStateMixin {
     _mainController.forward();
 
     // ignore: use_build_context_synchronously
-    Future.delayed(const Duration(milliseconds: 5600), () => goToSignIn(context));
+    // Future.delayed(const Duration(milliseconds: 5600), () => goToSignIn(context));
   }
-
 
   @override
   void dispose() {
@@ -109,6 +107,8 @@ class _SplashViewState extends State<SplashView> with TickerProviderStateMixin {
 
     return Scaffold(
       body: Container(
+        width: double.infinity,
+        height: double.infinity,
         decoration: const BoxDecoration(
           gradient: LinearGradient(
             colors: [
@@ -148,53 +148,11 @@ class _SplashViewState extends State<SplashView> with TickerProviderStateMixin {
             ),
 
             // ===== LOGO =====
-            Positioned(
-              top: h * 0.25,
-              child: FadeTransition(
-                opacity: logoFade,
-                child: ScaleTransition(
-                  scale: logoScale,
-                  child: const CutomLogo(),
-                ),
-              ),
-            ),
-
+            CutomLogo(logoFade: logoFade, logoScale: logoScale),
             // ===== TEXT =====
-            Positioned(
-              top: h * 0.56,
-              child: SlideTransition(
-                position: textSlide,
-                child: FadeTransition(
-                  opacity: textFade,
-                  child: Text(
-                    AppStrings.appName,
-                    style: AppTextStyles.inter700style48,
-                  ),
-                ),
-              ),
-            ),
-            Positioned(
-              top: h * 0.64,
-              child: SlideTransition(
-                position: textSlide,
-                child: FadeTransition(
-                  opacity: textFade,
-                  child: Text(
-                    AppStrings.subtitleSplash,
-                    style: AppTextStyles.inter300style18,
-                  ),
-                ),
-              ),
-            ),
-
+            TextSplashWidget(h: h, textSlide: textSlide, textFade: textFade),
             // ===== LOADING BOTTOM =====
-            Positioned(
-              bottom: 30,
-              child: FadeTransition(
-                opacity: bottomFade,
-                child: const LoadingBottom(),
-              ),
-            ),
+            LoadingBottom(bottomFade: bottomFade,),
           ],
         ),
       ),

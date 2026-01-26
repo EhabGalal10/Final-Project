@@ -3,15 +3,18 @@ import 'package:flutter/material.dart';
 import 'package:loading_animation_widget/loading_animation_widget.dart';
 
 class LoadingBottom extends StatelessWidget {
-  const LoadingBottom({super.key});
-
+  const LoadingBottom({super.key, required this.bottomFade});
+ final Animation<double> bottomFade;
   @override
   Widget build(BuildContext context) {
     return Positioned(
       bottom: 30,
-      child: LoadingAnimationWidget.waveDots(
-        color: AppColors.registerGradientbackgroundColorBottom.withAlpha(155),
-        size: 70,
+      child: FadeTransition(
+        opacity: bottomFade,
+        child: LoadingAnimationWidget.waveDots(
+          color: AppColors.registerGradientbackgroundColorBottom.withAlpha(155),
+          size: 70,
+        ),
       ),
     );
   }

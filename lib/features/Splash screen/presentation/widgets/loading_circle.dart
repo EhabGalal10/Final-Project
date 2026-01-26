@@ -18,7 +18,7 @@ class LoadingCircle extends StatelessWidget {
   final String image;
   final double top;
   final double phase;
-
+  
   @override
   Widget build(BuildContext context) {
     // ===== SCALE (Pulse smooth) =====
