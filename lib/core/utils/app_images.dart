@@ -47,7 +47,7 @@ class Assets {
 
   /// Assets for assetsImagesSubLogo
   /// assets/images/subLogo.png
-  static const String assetsImagesSubLogo = "assets/images/subLogo.png";
+  static const String assetsImagesSubLogo = "assets/images/subLogo.svg";
 
   /// Assets for assetsImagesUploadImage
   /// assets/images/uploadImage.png

@@ -1,7 +1,5 @@
 import 'package:final_project/core/utils/app_colors.dart';
 import 'package:final_project/core/utils/app_images.dart';
-import 'package:final_project/core/utils/app_strings.dart';
-import 'package:final_project/core/utils/app_text_styles.dart';
 import 'package:final_project/features/Splash%20screen/presentation/functions/custom_navigationWith_Animation.dart';
 import 'package:final_project/features/Splash%20screen/presentation/widgets/custom_logo.dart';
 import 'package:final_project/features/Splash%20screen/presentation/widgets/loading_bottom.dart';
@@ -90,8 +88,11 @@ class _SplashViewState extends State<SplashView> with TickerProviderStateMixin {
 
     _mainController.forward();
 
-    // ignore: use_build_context_synchronously
-    // Future.delayed(const Duration(milliseconds: 5600), () => goToSignIn(context));
+    Future.delayed(
+      const Duration(milliseconds: 5600),
+      // ignore: use_build_context_synchronously
+      () => goToSignIn(context),
+    );
   }
 
   @override
@@ -129,7 +130,7 @@ class _SplashViewState extends State<SplashView> with TickerProviderStateMixin {
               controller: _loadingController,
               size: 340,
               image: Assets.assetsImagesLargeCycle,
-              top: 0.14,
+              top: 0.145,
               phase: 0.4,
             ),
             LoadingCircle(
@@ -147,12 +148,9 @@ class _SplashViewState extends State<SplashView> with TickerProviderStateMixin {
               phase: 0.0,
             ),
 
-            // ===== LOGO =====
             CutomLogo(logoFade: logoFade, logoScale: logoScale),
-            // ===== TEXT =====
             TextSplashWidget(h: h, textSlide: textSlide, textFade: textFade),
-            // ===== LOADING BOTTOM =====
-            LoadingBottom(bottomFade: bottomFade,),
+            LoadingBottom(bottomFade: bottomFade),
           ],
         ),
       ),

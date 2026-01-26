@@ -1,3 +1,9 @@
+import 'package:final_project/core/utils/app_colors.dart';
+import 'package:final_project/core/utils/app_strings.dart';
+import 'package:final_project/core/utils/app_text_styles.dart';
+import 'package:final_project/features/Auth/presentation/widgets/form_login.dart';
+import 'package:final_project/features/Auth/presentation/widgets/have_an_account.dart';
+import 'package:final_project/features/Auth/presentation/widgets/sub_logo.dart';
 import 'package:flutter/material.dart';
 
 class SignInView extends StatelessWidget {
@@ -5,6 +11,52 @@ class SignInView extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return const Scaffold();
+    double h = MediaQuery.of(context).size.height;
+    return Scaffold(
+      body: Container(
+        width: double.infinity,
+        height: double.infinity,
+        decoration: const BoxDecoration(
+          gradient: LinearGradient(
+            begin: Alignment.topCenter,
+            end: Alignment.bottomCenter,
+            colors: [
+              AppColors.loginGradientbackgroundColorTop,
+              AppColors.loginGradientbackgroundColorBottom,
+            ],
+          ),
+        ),
+        child: CustomScrollView(
+          slivers: [
+            SliverToBoxAdapter(child: SizedBox(height: h * 0.12)),
+            SliverToBoxAdapter(child: SubLogo()),
+            SliverToBoxAdapter(child: SizedBox(height: 24)),
+            SliverToBoxAdapter(
+              child: Text(
+                AppStrings.welcomeBack,
+                style: AppTextStyles.inter900style30,
+                textAlign: TextAlign.center,
+              ),
+            ),
+            SliverToBoxAdapter(child: SizedBox(height: 10)),
+            SliverToBoxAdapter(
+              child: Text(
+                AppStrings.signInToContinue,
+                style: AppTextStyles.inter400style16,
+                textAlign: TextAlign.center,
+              ),
+            ),
+            SliverToBoxAdapter(child: SizedBox(height: h * 0.1)),
+            SliverToBoxAdapter(child: FormLogin()),
+            SliverToBoxAdapter(
+              child: HaveAnAccount(
+                label: AppStrings.dontHaveAnAccount,
+                actionLabel: AppStrings.signUp,
+              ),
+            ),
+          ],
+        ),
+      ),
+    );
   }
 }
