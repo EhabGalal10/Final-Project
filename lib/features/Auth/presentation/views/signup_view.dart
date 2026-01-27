@@ -1,14 +1,15 @@
 import 'package:final_project/core/utils/app_strings.dart';
+import 'package:final_project/core/utils/app_text_styles.dart';
 import 'package:final_project/features/Auth/presentation/widgets/form_signup.dart';
 import 'package:final_project/features/Auth/presentation/widgets/sub_logo_signup.dart';
 import 'package:flutter/material.dart';
-
 
 class SignupView extends StatelessWidget {
   const SignupView({super.key});
 
   @override
   Widget build(BuildContext context) {
+    double h = MediaQuery.of(context).size.height;
     return Scaffold(
       resizeToAvoidBottomInset: true,
       body: Container(
@@ -23,13 +24,18 @@ class SignupView extends StatelessWidget {
         child: SingleChildScrollView(
           child: Column(
             children: [
-              SizedBox(height: 30),
+              SizedBox(height: h * 0.06),
               SubLogoSignUp(),
               Text(
                 AppStrings.createAccount,
-                style: TextStyle(fontSize: 30, fontWeight: FontWeight.bold),
+                style: AppTextStyles.inter900style30,
+                textAlign: TextAlign.center,
               ),
-              Text('Join Mokhi for AI brain analysis'),
+              Text(
+                AppStrings.joinMokhi,
+                style: AppTextStyles.inter400style16,
+                textAlign: TextAlign.center,
+              ),
               SizedBox(height: 20),
               FormSignUp(),
             ],
