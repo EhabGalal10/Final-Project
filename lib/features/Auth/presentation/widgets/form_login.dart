@@ -30,7 +30,7 @@ class FormLogin extends StatelessWidget {
               obscureText: true,
             ),
             SizedBox(height: h * 0.1),
-            CustomButton(label: AppStrings.logIn, onPressed: () {}),
+            CustomButton(label: AppStrings.loginButton, onPressed: () {}),
             SizedBox(height: 32),
           ],
         ),

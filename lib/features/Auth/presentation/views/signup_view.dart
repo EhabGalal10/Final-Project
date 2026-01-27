@@ -1,9 +1,5 @@
 import 'package:final_project/core/utils/app_strings.dart';
-import 'package:final_project/features/Auth/presentation/widgets/custom_button.dart';
-import 'package:final_project/features/Auth/presentation/widgets/custom_text_field.dart';
 import 'package:final_project/features/Auth/presentation/widgets/form_signup.dart';
-import 'package:final_project/features/Auth/presentation/widgets/have_an_account.dart';
-import 'package:final_project/features/Auth/presentation/widgets/label_form.dart';
 import 'package:final_project/features/Auth/presentation/widgets/sub_logo_signup.dart';
 import 'package:flutter/material.dart';
 

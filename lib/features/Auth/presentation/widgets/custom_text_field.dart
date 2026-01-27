@@ -7,16 +7,18 @@ class CustomTextField extends StatelessWidget {
     required this.icon,
     required this.hintText,
     this.obscureText = false,
-    this.fillColor = Colors.white,
+    this.fillColor = Colors.white, this.validator,
   });
   final IconData icon;
   final String hintText;
   final bool obscureText;
   final Color? fillColor;
+  final String? Function(String?)? validator;
   @override
   Widget build(BuildContext context) {
     return TextFormField(
       obscureText: obscureText,
+      validator: validator,
       decoration: InputDecoration(
         border: textBorderStyle(),
         enabledBorder: textBorderStyle(),
