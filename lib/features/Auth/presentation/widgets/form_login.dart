@@ -11,7 +11,7 @@ class FormLogin extends StatelessWidget {
   const FormLogin({super.key});
   @override
   Widget build(BuildContext context) {
-       AuthCubit cubit = context.read<AuthCubit>();
+      AuthCubit cubit = context.read<AuthCubit>();
     double h = MediaQuery.of(context).size.height;
     return BlocBuilder<AuthCubit, AuthState>(
       builder: (context, state) {
@@ -63,7 +63,7 @@ class FormLogin extends StatelessWidget {
                   onPressed: () {
                     if (cubit.formKeyLogin.currentState!.validate()) {
                     } else {
-                     cubit.enableAutoValidate();
+                    cubit.enableAutoValidate();
                     }
                   },
                 ),
