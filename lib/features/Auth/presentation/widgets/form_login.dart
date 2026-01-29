@@ -1,3 +1,4 @@
+import 'package:final_project/core/utils/app_colors.dart';
 import 'package:final_project/core/utils/app_strings.dart';
 import 'package:final_project/features/Auth/presentation/cubit/auth_cubit.dart';
 import 'package:final_project/features/Auth/presentation/cubit/auth_state.dart';
@@ -11,15 +12,52 @@ class FormLogin extends StatelessWidget {
   const FormLogin({super.key});
   @override
   Widget build(BuildContext context) {
-      AuthCubit cubit = context.read<AuthCubit>();
+    AuthCubit cubit = context.read<AuthCubit>();
     double h = MediaQuery.of(context).size.height;
-    return BlocBuilder<AuthCubit, AuthState>(
+
+    return BlocConsumer<AuthCubit, AuthState>(
+      listener: (context, state) {
+        if (state is LoginLoading) {
+          showDialog(
+            context: context,
+            barrierDismissible: false,
+            builder: (context) => Center(
+              child: CircularProgressIndicator(color: AppColors.primaryColor),
+            ),
+          );
+        } else {
+          Navigator.of(context, rootNavigator: true).pop(); // Close the dialog
+        }
+        if (state is LoginSuccess) {
+          ScaffoldMessenger.of(context).showSnackBar(
+            SnackBar(
+              content: Text('Login Successful!'),
+              backgroundColor: Colors.green,
+            ),
+          );
+          // Navigate to the main app screen or dashboard
+          Navigator.pushReplacementNamed(context, '/home');
+        } else if (state is LoginFailure) {
+          ScaffoldMessenger.of(context).showSnackBar(
+            SnackBar(
+              content: Text(state.errorMessage),
+              backgroundColor: Colors.red,
+            ),
+          );
+        } else if (state is LoginEmailNotVerified) {
+          ScaffoldMessenger.of(context).showSnackBar(
+            const SnackBar(
+              content: Text('Email not verified. Please verify your email.'),
+              backgroundColor: Colors.orange,
+            ),
+          );
+        }
+      },
       builder: (context, state) {
         AutovalidateMode autoValidateMode = AutovalidateMode.disabled;
-    if (state is AuthAutoValidate) {
-      autoValidateMode = state.autovalidateMode;
-    }
-
+        if (state is AuthAutoValidate) {
+          autoValidateMode = state.autovalidateMode;
+        }
         return Form(
           key: cubit.formKeyLogin,
           autovalidateMode: autoValidateMode,
@@ -32,6 +70,7 @@ class FormLogin extends StatelessWidget {
                 CustomTextField(
                   hintText: AppStrings.enterYourEmail,
                   icon: Icons.email,
+                  onChanged: (email) => cubit.email = email,
                   validator: (email) {
                     if (email == null || email.isEmpty) {
                       return 'Please enter your email';
@@ -50,6 +89,7 @@ class FormLogin extends StatelessWidget {
                   hintText: AppStrings.enterYourPassword,
                   icon: Icons.lock,
                   obscureText: true,
+                  onChanged: (password) => cubit.password = password,
                   validator: (password) {
                     if (password == null || password.isEmpty) {
                       return 'Please enter your password';
@@ -58,12 +98,14 @@ class FormLogin extends StatelessWidget {
                   },
                 ),
                 SizedBox(height: h * 0.1),
+
                 CustomButton(
                   label: AppStrings.loginButton,
                   onPressed: () {
                     if (cubit.formKeyLogin.currentState!.validate()) {
+                      cubit.login();
                     } else {
-                    cubit.enableAutoValidate();
+                      cubit.enableAutoValidate();
                     }
                   },
                 ),

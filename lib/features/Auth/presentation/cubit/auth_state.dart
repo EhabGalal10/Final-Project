@@ -19,3 +19,11 @@ class SignUpFailure extends AuthState {
   SignUpFailure(this.errorMessage);
 }
 class SignUpLoading extends AuthState {}
+class LoginLoading extends AuthState {}
+class LoginSuccess extends AuthState {}
+class LoginFailure extends AuthState {
+  final String errorMessage;
+
+  LoginFailure(this.errorMessage);
+}
+class LoginEmailNotVerified extends AuthState {}

@@ -2,7 +2,6 @@ import 'package:final_project/core/utils/app_colors.dart';
 import 'package:final_project/core/utils/app_images.dart';
 import 'package:final_project/features/Splash%20screen/presentation/functions/custom_navigationWith_Animation.dart';
 import 'package:final_project/features/Splash%20screen/presentation/widgets/custom_logo.dart';
-import 'package:final_project/features/Splash%20screen/presentation/widgets/loading_bottom.dart';
 import 'package:final_project/features/Splash%20screen/presentation/widgets/loading_circle.dart';
 import 'package:final_project/features/Splash%20screen/presentation/widgets/text_splash.dart';
 import 'package:flutter/material.dart';

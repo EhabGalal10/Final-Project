@@ -2,6 +2,7 @@ import 'package:final_project/core/utils/app_colors.dart';
 import 'package:final_project/core/utils/app_strings.dart';
 import 'package:final_project/features/Auth/presentation/cubit/auth_cubit.dart';
 import 'package:final_project/features/Auth/presentation/cubit/auth_state.dart';
+import 'package:final_project/features/Auth/presentation/functions/custom_show_dialog.dart';
 import 'package:final_project/features/Auth/presentation/widgets/custom_button.dart';
 import 'package:final_project/features/Auth/presentation/widgets/custom_text_field.dart';
 import 'package:final_project/features/Auth/presentation/widgets/have_an_account.dart';
@@ -19,16 +20,8 @@ class FormSignUp extends StatelessWidget {
     return BlocConsumer<AuthCubit, AuthState>(
       listener: (context, state) {
         if (state is SignUpSuccess) {
-          ScaffoldMessenger.of(context).showSnackBar(
-            SnackBar(
-              content: Text(
-                'Sign Up Successful! Please check your email to verify your account.',
-              ),
-              backgroundColor: Colors.green,
-            ),
-          );
-          resetForm(cubit);
-          Navigator.pop(context);
+          customShowDialog(context, cubit);
+
         } else if (state is SignUpFailure) {
           ScaffoldMessenger.of(context).showSnackBar(
             SnackBar(
@@ -171,13 +164,5 @@ class FormSignUp extends StatelessWidget {
         );
       },
     );
-  }
-
-  void resetForm(AuthCubit cubit) {
-    cubit.formKeySignUp.currentState!.reset();
-    cubit.email = null;
-    cubit.password = null;
-    cubit.confirmPassword = null;
-    cubit.name = null;
   }
 }
