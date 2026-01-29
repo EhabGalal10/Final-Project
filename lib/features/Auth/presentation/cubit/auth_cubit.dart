@@ -1,3 +1,4 @@
+import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:final_project/features/Auth/presentation/cubit/auth_state.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
@@ -25,7 +26,7 @@ class AuthCubit extends Cubit<AuthState> {
             password: password!.trim(),
           );
       await credential.user?.sendEmailVerification();
-
+      await addUserData();
       emit(SignUpSuccess());
     } on FirebaseAuthException catch (e) {
       if (e.code == 'weak-password') {
@@ -45,16 +46,14 @@ class AuthCubit extends Cubit<AuthState> {
     }
   }
 
-void login() async {
+  void login() async {
     emit(LoginLoading());
     try {
-      
-      final credential = await FirebaseAuth.instance
-          .signInWithEmailAndPassword(
-            email: email!.trim(),
-            password: password!.trim(),
-          );
-          await credential.user?.reload();
+      final credential = await FirebaseAuth.instance.signInWithEmailAndPassword(
+        email: email!.trim(),
+        password: password!.trim(),
+      );
+      await credential.user?.reload();
       if (credential.user != null && credential.user!.emailVerified) {
         emit(LoginSuccess());
       } else {
@@ -70,5 +69,15 @@ void login() async {
     } catch (e) {
       emit(LoginFailure(e.toString()));
     }
+  }
+
+  Future<void> addUserData() async {
+    final user = FirebaseAuth.instance.currentUser;
+    if (user == null) return;
+
+    await FirebaseFirestore.instance.collection('users').add({
+      'name': name,
+      'email': email,
+    });
   }
 }
