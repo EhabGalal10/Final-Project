@@ -26,7 +26,6 @@ class AuthCubit extends Cubit<AuthState> {
             password: password!.trim(),
           );
       await credential.user?.sendEmailVerification();
-      await addUserData();
       emit(SignUpSuccess());
     } on FirebaseAuthException catch (e) {
       if (e.code == 'weak-password') {
@@ -55,6 +54,7 @@ class AuthCubit extends Cubit<AuthState> {
       );
       await credential.user?.reload();
       if (credential.user != null && credential.user!.emailVerified) {
+        await addUserData();
         emit(LoginSuccess());
       } else {
         await FirebaseAuth.instance.signOut();
