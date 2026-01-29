@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 
-class AuthState {}
+abstract class AuthState {}
 
 class AuthInitial extends AuthState {}
 class AuthAutoValidate extends AuthState {
@@ -10,3 +10,12 @@ class AuthAutoValidate extends AuthState {
     this.autovalidateMode = AutovalidateMode.always,
   });
 }
+
+
+class SignUpSuccess extends AuthState {}
+class SignUpFailure extends AuthState {
+  final String errorMessage;
+
+  SignUpFailure(this.errorMessage);
+}
+class SignUpLoading extends AuthState {}

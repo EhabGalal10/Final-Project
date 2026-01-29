@@ -16,18 +16,19 @@ class TextSplashWidget extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Column(
-      mainAxisSize: MainAxisSize.min,
+    return Stack(
       children: [
-        SizedBox(height: h * 0.4),
         Positioned(
           top: h * 0.56,
+          left: 0,
+          right: 0,
           child: SlideTransition(
             position: textSlide,
             child: FadeTransition(
               opacity: textFade,
               child: Text(
                 AppStrings.appName,
+                textAlign: TextAlign.center,
                 style: AppTextStyles.inter700style48,
               ),
             ),
@@ -35,12 +36,15 @@ class TextSplashWidget extends StatelessWidget {
         ),
         Positioned(
           top: h * 0.64,
+          left: 0,
+          right: 0,
           child: SlideTransition(
             position: textSlide,
             child: FadeTransition(
               opacity: textFade,
               child: Text(
                 AppStrings.subtitleSplash,
+                textAlign: TextAlign.center,
                 style: AppTextStyles.inter300style18,
               ),
             ),

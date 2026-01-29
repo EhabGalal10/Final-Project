@@ -1,3 +1,5 @@
+import 'package:awesome_dialog/awesome_dialog.dart';
+import 'package:final_project/core/utils/app_colors.dart';
 import 'package:final_project/core/utils/app_strings.dart';
 import 'package:final_project/features/Auth/presentation/cubit/auth_cubit.dart';
 import 'package:final_project/features/Auth/presentation/cubit/auth_state.dart';
@@ -13,14 +15,32 @@ class FormSignUp extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-        AuthCubit cubit = context.read<AuthCubit>();
-    return BlocBuilder<AuthCubit, AuthState>(
+    AuthCubit cubit = context.read<AuthCubit>();
+
+    return BlocConsumer<AuthCubit, AuthState>(
+      listener: (context, state) {
+        if (state is SignUpSuccess) {
+          ScaffoldMessenger.of(context).showSnackBar(
+            SnackBar(
+              content: Text('Sign Up Successful! Please check your email to verify your account.'),
+              backgroundColor: Colors.green,
+            ),
+          );
+          resetForm(cubit);
+        } else if (state is SignUpFailure) {
+          ScaffoldMessenger.of(context).showSnackBar(
+            SnackBar(
+              content: Text(state.errorMessage),
+              backgroundColor: Colors.red,
+            ),
+          );
+        }
+      },
       builder: (context, state) {
         AutovalidateMode autoValidateMode = AutovalidateMode.disabled;
-
-    if (state is AuthAutoValidate) {
-      autoValidateMode = state.autovalidateMode;
-    }
+        if (state is AuthAutoValidate) {
+          autoValidateMode = state.autovalidateMode;
+        }
         return Padding(
           padding: const EdgeInsets.symmetric(horizontal: 20),
           child: Container(
@@ -107,32 +127,33 @@ class FormSignUp extends StatelessWidget {
                     hintText: AppStrings.confirmYourPassword,
                     icon: Icons.lock,
                     onChanged: (confirmPassword) {
-                      cubit.confirmPassword =
-                          confirmPassword;
+                      cubit.confirmPassword = confirmPassword;
                     },
                     obscureText: true,
                     fillColor: Colors.grey[100],
                     validator: (confirmPassword) {
                       if (confirmPassword == null || confirmPassword.isEmpty) {
                         return 'Please confirm your password';
-                      } else if (confirmPassword !=
-                          cubit.password) {
+                      } else if (confirmPassword != cubit.password) {
                         return 'Passwords do not match';
                       }
                       return null;
                     },
                   ),
                   SizedBox(height: 25),
-                  CustomButton(
-                    label: AppStrings.signUpButton,
-                    onPressed: () {
-                      if (cubit.formKeySignUp.currentState!.validate()) {
-                        // Process data.
-                      } else {
-                        cubit.enableAutoValidate();
-                      }
-                    },
-                  ),
+                  state is SignUpLoading
+                      ? CircularProgressIndicator(color: AppColors.primaryColor)
+                      : CustomButton(
+                          label: AppStrings.signUpButton,
+                          onPressed:  () {
+                            if (cubit.formKeySignUp.currentState!.validate()) {
+                              cubit.signUp();
+                            } else {
+                              cubit.enableAutoValidate();
+                            }
+                          },
+                        ),
+
                   SizedBox(height: 15),
                   HaveAnAccount(
                     onTap: () {
@@ -148,5 +169,13 @@ class FormSignUp extends StatelessWidget {
         );
       },
     );
+  }
+
+  void resetForm(AuthCubit cubit) {
+     cubit.formKeySignUp.currentState!.reset();
+    cubit.email = null;
+    cubit.password = null;
+    cubit.confirmPassword = null;
+    cubit.name = null;
   }
 }
