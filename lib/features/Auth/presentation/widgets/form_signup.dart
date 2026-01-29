@@ -1,4 +1,3 @@
-import 'package:awesome_dialog/awesome_dialog.dart';
 import 'package:final_project/core/utils/app_colors.dart';
 import 'package:final_project/core/utils/app_strings.dart';
 import 'package:final_project/features/Auth/presentation/cubit/auth_cubit.dart';
@@ -22,11 +21,14 @@ class FormSignUp extends StatelessWidget {
         if (state is SignUpSuccess) {
           ScaffoldMessenger.of(context).showSnackBar(
             SnackBar(
-              content: Text('Sign Up Successful! Please check your email to verify your account.'),
+              content: Text(
+                'Sign Up Successful! Please check your email to verify your account.',
+              ),
               backgroundColor: Colors.green,
             ),
           );
           resetForm(cubit);
+          Navigator.pop(context);
         } else if (state is SignUpFailure) {
           ScaffoldMessenger.of(context).showSnackBar(
             SnackBar(
@@ -145,7 +147,7 @@ class FormSignUp extends StatelessWidget {
                       ? CircularProgressIndicator(color: AppColors.primaryColor)
                       : CustomButton(
                           label: AppStrings.signUpButton,
-                          onPressed:  () {
+                          onPressed: () {
                             if (cubit.formKeySignUp.currentState!.validate()) {
                               cubit.signUp();
                             } else {
@@ -172,7 +174,7 @@ class FormSignUp extends StatelessWidget {
   }
 
   void resetForm(AuthCubit cubit) {
-     cubit.formKeySignUp.currentState!.reset();
+    cubit.formKeySignUp.currentState!.reset();
     cubit.email = null;
     cubit.password = null;
     cubit.confirmPassword = null;

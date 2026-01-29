@@ -19,10 +19,13 @@ class AuthCubit extends Cubit<AuthState> {
   void signUp() async {
     emit(SignUpLoading());
     try {
-      await FirebaseAuth.instance.createUserWithEmailAndPassword(
-        email: email!,
-        password: password!,
-      );
+      final credential = await FirebaseAuth.instance
+          .createUserWithEmailAndPassword(
+            email: email!.trim(),
+            password: password!.trim(),
+          );
+      await credential.user?.sendEmailVerification();
+      
       emit(SignUpSuccess());
     } on FirebaseAuthException catch (e) {
       if (e.code == 'weak-password') {
@@ -32,6 +35,13 @@ class AuthCubit extends Cubit<AuthState> {
       }
     } catch (e) {
       emit(SignUpFailure(e.toString()));
+    }
+  }
+
+  void sendEmailVerification() async {
+    User? user = FirebaseAuth.instance.currentUser;
+    if (user != null && !user.emailVerified) {
+      await user.sendEmailVerification();
     }
   }
 }

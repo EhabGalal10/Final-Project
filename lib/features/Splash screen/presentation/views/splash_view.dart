@@ -150,7 +150,6 @@ class _SplashViewState extends State<SplashView> with TickerProviderStateMixin {
 
             CutomLogo(logoFade: logoFade, logoScale: logoScale),
             TextSplashWidget(h: h, textSlide: textSlide, textFade: textFade),
-            LoadingBottom(bottomFade: bottomFade),
           ],
         ),
       ),
