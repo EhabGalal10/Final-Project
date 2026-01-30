@@ -26,6 +26,7 @@ class AuthCubit extends Cubit<AuthState> {
             password: password!.trim(),
           );
       await credential.user?.sendEmailVerification();
+      await addUserData();
       await FirebaseAuth.instance.signOut();
       emit(SignUpSuccess());
     } on FirebaseAuthException catch (e) {
@@ -55,7 +56,6 @@ class AuthCubit extends Cubit<AuthState> {
       );
       await credential.user?.reload();
       if (credential.user != null && credential.user!.emailVerified) {
-        await addUserData();
         emit(LoginSuccess());
       } else {
         await FirebaseAuth.instance.signOut();
@@ -75,7 +75,7 @@ class AuthCubit extends Cubit<AuthState> {
   Future<void> addUserData() async {
     final user = FirebaseAuth.instance.currentUser;
     if (user == null) return;
-
+    final name = this.name;
     await FirebaseFirestore.instance.collection('users').add({
       'name': name,
       'email': email,

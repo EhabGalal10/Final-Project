@@ -8,7 +8,7 @@ void goToSignIn(context) {
     PageRouteBuilder(
       transitionDuration: const Duration(milliseconds: 700),
       pageBuilder: (_, __, ___) {
-        if(FirebaseAuth.instance.currentUser != null){
+        if(FirebaseAuth.instance.currentUser != null&& FirebaseAuth.instance.currentUser!.emailVerified){
           return const HomeView();
         }else{
           return const SignInView();

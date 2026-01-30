@@ -1,3 +1,4 @@
+import 'package:final_project/features/home/presentation/widgets/drawer.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 
@@ -7,24 +8,19 @@ class HomeView extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(
-        title: const Text('Home'),
-        actions: [
-          IconButton(
-            icon: const Icon(Icons.logout),
-            onPressed: () {
-              
-              FirebaseAuth.instance.signOut();
-              Navigator.of(context).pushReplacementNamed(
-                '/signin',
-              );
-            },
-          ),
-        ],
+      drawer: customDrawer(
+        userName: 'Ahmed ElQady',
+        avatarUrl: 'https://i.pravatar.cc/300',
+        onHomeTap: () {
+          Navigator.pop(context);
+        },
+        onLogoutTap: () {
+          FirebaseAuth.instance.signOut();
+          Navigator.of(context).pushReplacementNamed('/signin');
+        },
       ),
-      body: const Center(
-        child: Text('Welcome to the Home Screen!'),
-      ),
+      appBar: AppBar(title: const Text('Home'), centerTitle: true),
+      body: const Center(child: Text('Welcome to the Home Screen!')),
     );
   }
 }
