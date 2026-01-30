@@ -141,6 +141,7 @@ class FormSignUp extends StatelessWidget {
                       : CustomButton(
                           label: AppStrings.signUpButton,
                           onPressed: () {
+                            FocusScope.of(context).unfocus();
                             if (cubit.formKeySignUp.currentState!.validate()) {
                               cubit.signUp();
                             } else {

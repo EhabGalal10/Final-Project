@@ -102,6 +102,7 @@ class FormLogin extends StatelessWidget {
                 CustomButton(
                   label: AppStrings.loginButton,
                   onPressed: () {
+                    FocusScope.of(context).unfocus();
                     if (cubit.formKeyLogin.currentState!.validate()) {
                       cubit.login();
                     } else {
