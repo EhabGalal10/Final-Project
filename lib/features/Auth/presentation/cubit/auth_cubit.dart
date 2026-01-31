@@ -26,7 +26,8 @@ class AuthCubit extends Cubit<AuthState> {
             password: password!.trim(),
           );
       await credential.user?.sendEmailVerification();
-      await addUserData();
+      final uid = credential.user!.uid;
+      await addUserData(uid);
       await FirebaseAuth.instance.signOut();
       emit(SignUpSuccess());
     } on FirebaseAuthException catch (e) {
@@ -72,11 +73,8 @@ class AuthCubit extends Cubit<AuthState> {
     }
   }
 
-  Future<void> addUserData() async {
-    final user = FirebaseAuth.instance.currentUser;
-    if (user == null) return;
-    final name = this.name;
-    await FirebaseFirestore.instance.collection('users').add({
+  Future<void> addUserData(String uid) async {
+    await FirebaseFirestore.instance.collection('users').doc(uid).set({
       'name': name,
       'email': email,
     });
