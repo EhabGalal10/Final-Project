@@ -1,5 +1,7 @@
+import 'package:final_project/core/utils/app_text_styles.dart';
 import 'package:final_project/features/home/presentation/cubit/cubit/home_cubit.dart';
 import 'package:final_project/features/home/presentation/widgets/drawer.dart';
+import 'package:final_project/features/home/presentation/widgets/sub_logo_home.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
@@ -11,8 +13,20 @@ class HomeView extends StatelessWidget {
     return BlocProvider(
       create: (context) => HomeCubit(),
       child: Scaffold(
+        backgroundColor: Color(0xffF9FAFB),
         drawer: CustomDrawer(),
-        appBar: AppBar(title: const Text('Home'), centerTitle: true),
+        appBar: AppBar(
+          backgroundColor: Colors.white,
+          elevation: 0,
+          actionsPadding: EdgeInsets.symmetric(horizontal: 16),
+          clipBehavior: Clip.antiAlias,
+          title: Text(
+            'Brain MRI Diagnosis',
+            style: AppTextStyles.inter900style30.copyWith(fontSize: 20),
+          ),
+          centerTitle: true,
+          actions: [SubLogoHome()],
+        ),
         body: const Center(child: Text('Welcome to the Home Screen!')),
       ),
     );
