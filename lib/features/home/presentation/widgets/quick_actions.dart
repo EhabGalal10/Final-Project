@@ -44,6 +44,7 @@ class QuickActions extends StatelessWidget {
               CustomQuickActions(
                 title: AppStrings.findDoctor,
                 image: Assets.assetsImagesFindDoctor,
+                onTap: () => Navigator.pushNamed(context, '/doctorsView'),
               ),
             ],
           ),
