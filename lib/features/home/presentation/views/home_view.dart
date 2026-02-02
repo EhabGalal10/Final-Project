@@ -1,5 +1,5 @@
 import 'package:final_project/core/utils/app_text_styles.dart';
-import 'package:final_project/features/home/presentation/cubit/cubit/home_cubit.dart';
+import 'package:final_project/features/home/presentation/cubits/cubit/home_cubit.dart';
 import 'package:final_project/features/home/presentation/widgets/drawer.dart';
 import 'package:final_project/features/home/presentation/widgets/quick_actions.dart';
 import 'package:final_project/features/home/presentation/widgets/sub_logo_home.dart';

@@ -1,5 +1,5 @@
 import 'package:final_project/core/utils/app_colors.dart';
-import 'package:final_project/features/home/presentation/cubit/cubit/home_cubit.dart';
+import 'package:final_project/features/home/presentation/cubits/cubit/home_cubit.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 

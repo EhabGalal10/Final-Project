@@ -39,7 +39,7 @@ class CustomDoctorCard extends StatelessWidget {
               children: [
                 const Icon(Icons.phone, size: 16, color: Colors.grey),
                 const SizedBox(width: 4),
-                Text(doctor.phone.toString()),
+                Text(doctor.phone!),
               ],
             ),
           ],
@@ -48,7 +48,7 @@ class CustomDoctorCard extends StatelessWidget {
           icon: const Icon(Icons.call, color: AppColors.primaryColor),
           onPressed: () async {
             // await launch('tel://${doctor.phone}');
-            await FlutterPhoneDirectCaller.callNumber(doctor.phone.toString());
+            await FlutterPhoneDirectCaller.callNumber(doctor.phone!);
           },
         ),
       ),
