@@ -14,11 +14,11 @@ class Assets {
 
   /// Assets for assetsImagesFindDoctor
   /// assets/images/findDoctor.png
-  static const String assetsImagesFindDoctor = "assets/images/findDoctor.png";
+  static const String assetsImagesFindDoctor = "assets/images/findDoctor.svg";
 
   /// Assets for assetsImagesHistory
   /// assets/images/history.png
-  static const String assetsImagesHistory = "assets/images/history.png";
+  static const String assetsImagesHistory = "assets/images/history.svg";
 
   /// Assets for assetsImagesImportantNotice
   /// assets/images/importantNotice.png
@@ -51,15 +51,5 @@ class Assets {
 
   /// Assets for assetsImagesUploadImage
   /// assets/images/uploadImage.png
-  static const String assetsImagesUploadImage = "assets/images/uploadImage.png";
-
-  /// Assets for assetsImagesVectorOne
-  /// assets/images/vectorOne.png
-  // static const String assetsImagesVectorOne = "assets/images/vectorOne.png";
-  static const String assetsImagesVectorOneSvg = "assets/images/vectorOne.svg";
-
-  /// Assets for assetsImagesVectorTwo
-  /// assets/images/vectorTwo.png
-  // static const String assetsImagesVectorTwo = "assets/images/vectorTwo.png";
-  static const String assetsImagesVectorTwoSvg = "assets/images/vectorTwo.svg";
+  static const String assetsImagesUploadImage = "assets/images/uploadImage.svg";
 }
