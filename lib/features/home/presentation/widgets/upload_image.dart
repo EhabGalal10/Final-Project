@@ -6,8 +6,9 @@ import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
 
 class UploadImage extends StatelessWidget {
-  const UploadImage({super.key});
-
+  const UploadImage({super.key,required this.ontap,required this.onlongpress});
+  final VoidCallback? ontap ;
+  final VoidCallback? onlongpress ;
   @override
   Widget build(BuildContext context) {
     double h = MediaQuery.of(context).size.height;
@@ -29,63 +30,68 @@ class UploadImage extends StatelessWidget {
             style: AppTextStyles.inter900style30.copyWith(fontSize: 18),
           ),
           SizedBox(height: 16),
-          Container(
-            height: h * 0.42,
-            width: w * 0.9,
-            decoration: BoxDecoration(
-              color: Color(0xffF9FAFB),
-              borderRadius: BorderRadius.all(Radius.circular(12)),
-            ),
-            child: Column(
-              children: [
-                SizedBox(height: h * 0.03),
-                CircleAvatar(
-                  backgroundColor: AppColors.findDoctorContainerColor,
-                  radius: 35,
-                  child: SvgPicture.asset(
-                    Assets.assetsImagesUploadImage,
-                    height: 26,
-                    width: 26,
-                    fit: BoxFit.cover,
-                  ),
-                ),
-                SizedBox(height: h * 0.03),
-                Text(
-                  AppStrings.tapToUpload,
-                  style: AppTextStyles.inter400style16.copyWith(
-                    color: Color(0xff374151),
-                    fontSize: 18,
-                  ),
-                ),
-                SizedBox(height: 8),
-                Text(
-                  AppStrings.imageSupport,
-                  style: AppTextStyles.inter400style16.copyWith(
-                    color: Color(0xff6B7280),
-                    fontSize: 14,
-                  ),
-                ),
-                SizedBox(height: h * 0.1),
-                ElevatedButton(
-                  onPressed: () {},
-                  style: ElevatedButton.styleFrom(
-                    foregroundColor: Colors.white,
-                    padding: EdgeInsets.symmetric(vertical: 12),
-                    minimumSize: Size(w * 0.4, 40),
-                    shape: RoundedRectangleBorder(
-                      borderRadius: BorderRadius.circular(8),
+          GestureDetector(
+            onTap: ontap,
+            onLongPress: onlongpress,
+            child: Container(
+              height: h * 0.42,
+              width: w * 0.9,
+              decoration: BoxDecoration(
+                color: Color(0xffF9FAFB),
+                borderRadius: BorderRadius.all(Radius.circular(12)),
+              ),
+              child: Column(
+                children: [
+                  SizedBox(height: h * 0.03),
+                  CircleAvatar(
+                    backgroundColor: AppColors.findDoctorContainerColor,
+                    radius: 35,
+                    child: SvgPicture.asset(
+                      Assets.assetsImagesUploadImage,
+                      height: 26,
+                      width: 26,
+                      fit: BoxFit.cover,
                     ),
-                    backgroundColor: AppColors.primaryColor,
                   ),
-                  child: Text(
-                    AppStrings.selectFile,
+                  SizedBox(height: h * 0.03),
+                  Text(
+                    AppStrings.tapToUpload,
                     style: AppTextStyles.inter400style16.copyWith(
-                      color: Colors.white,
-                      fontSize: 17,
+                      color: Color(0xff374151),
+                      fontSize: 18,
                     ),
                   ),
-                ),
-              ],
+                  SizedBox(height: 8),
+                  Text(
+                    AppStrings.imageSupport,
+                    style: AppTextStyles.inter400style16.copyWith(
+                      color: Color(0xff6B7280),
+                      fontSize: 14,
+                    ),
+                  ),
+                  SizedBox(height: h * 0.1),
+                  ElevatedButton(
+                    onPressed: ontap,
+                    onLongPress: onlongpress,
+                    style: ElevatedButton.styleFrom(
+                      foregroundColor: Colors.white,
+                      padding: EdgeInsets.symmetric(vertical: 12),
+                      minimumSize: Size(w * 0.4, 40),
+                      shape: RoundedRectangleBorder(
+                        borderRadius: BorderRadius.circular(8),
+                      ),
+                      backgroundColor: AppColors.primaryColor,
+                    ),
+                    child: Text(
+                      AppStrings.selectFile,
+                      style: AppTextStyles.inter400style16.copyWith(
+                        color: Colors.white,
+                        fontSize: 17,
+                      ),
+                    ),
+                  ),
+                ],
+              ),
             ),
           ),
         ],

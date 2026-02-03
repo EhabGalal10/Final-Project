@@ -1,6 +1,7 @@
 import 'package:final_project/features/Auth/presentation/views/signin_view.dart';
 import 'package:final_project/features/Auth/presentation/views/signup_view.dart';
 import 'package:final_project/features/Splash%20screen/presentation/views/splash_view.dart';
+import 'package:final_project/features/diagnosis/presentation/views/diagnosis_view.dart';
 import 'package:final_project/features/home/presentation/views/doctors_view.dart';
 import 'package:final_project/features/home/presentation/views/home_view.dart';
 import 'package:final_project/firebase_options.dart';
@@ -30,6 +31,7 @@ class Mokhi extends StatelessWidget {
         '/signup': (context) => const SignupView(),
         '/home': (context) => const HomeView(),
         '/doctorsView': (context) => const DoctorsView(),
+        '/diagnosisView': (context) => const DiagnosisView(),
       },
     );
   }

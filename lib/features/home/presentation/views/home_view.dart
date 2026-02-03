@@ -1,3 +1,5 @@
+import 'dart:io';
+import 'package:final_project/core/functions/image_picker.dart';
 import 'package:final_project/core/utils/app_text_styles.dart';
 import 'package:final_project/features/home/presentation/cubits/cubit/home_cubit.dart';
 import 'package:final_project/features/home/presentation/widgets/drawer.dart';
@@ -6,6 +8,7 @@ import 'package:final_project/features/home/presentation/widgets/sub_logo_home.d
 import 'package:final_project/features/home/presentation/widgets/upload_image.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:path/path.dart';
 
 class HomeView extends StatelessWidget {
   const HomeView({super.key});
@@ -29,7 +32,36 @@ class HomeView extends StatelessWidget {
           centerTitle: true,
           actions: [SubLogoHome()],
         ),
-        body: ListView(children: [UploadImage(), QuickActions()]),
+        body: ListView(
+          children: [
+            UploadImage(
+              ontap: () async {
+                String? imagePath = await pickImageFromGallery();
+                if (imagePath != null) {
+                  File image = File(imagePath);
+                  Navigator.pushNamed(
+                    context,
+                    '/diagnosisView',
+                    arguments: {'image': image},
+                  );
+                }
+              },
+              onlongpress: () async {
+                String? imagePath = await pickImageFromCamera();
+                if (imagePath != null) {
+                  File image = File(imagePath);
+                  String name =   basename(image.path);
+                  Navigator.pushNamed(
+                    context,
+                    '/diagnosisView',
+                    arguments: {'image': image, 'name': name},
+                  );
+                }
+              },
+            ),
+            QuickActions(),
+          ],
+        ),
       ),
     );
   }
