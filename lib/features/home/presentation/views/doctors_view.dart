@@ -17,6 +17,7 @@ class DoctorsView extends StatelessWidget {
         centerTitle: true,
       ),
       body: ListView.builder(
+        physics: BouncingScrollPhysics(),
         padding: const EdgeInsets.all(12),
         itemCount: DoctorsModel.doctors.length,
         itemBuilder: (context, index) {
