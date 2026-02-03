@@ -14,7 +14,7 @@ abstract class AppTextStyles {
     color: Colors.white,
     fontFamily: 'Inter',
   );
-  static final TextStyle inter900style30 = TextStyle(
+  static final TextStyle inter700style30 = TextStyle(
     fontSize: 30,
     fontWeight: FontWeight.w700,
     color: Color(0xFF111827),
@@ -26,7 +26,7 @@ abstract class AppTextStyles {
     fontWeight: FontWeight.w400,
     fontFamily: 'Inter',
   );
-  static final TextStyle interMediumstyle14 = TextStyle(
+  static final TextStyle interMediumstyle16 = TextStyle(
     fontSize: 16,
     color: Colors.black87,
     fontFamily: 'Inter',

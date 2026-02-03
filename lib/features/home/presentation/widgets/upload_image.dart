@@ -31,14 +31,14 @@ class UploadImage extends StatelessWidget {
         children: [
           Text(
             'Upload Image Screen',
-            style: AppTextStyles.inter900style30.copyWith(fontSize: 18),
+            style: AppTextStyles.inter700style30.copyWith(fontSize: 18),
           ),
           SizedBox(height: 16),
           GestureDetector(
             onTap: ontap,
             onLongPress: onlongpress,
             child: Container(
-              height: h * 0.42,
+              height: h * 0.43,
               width: w * 0.9,
               decoration: BoxDecoration(
                 color: Color(0xffF9FAFB),
@@ -57,7 +57,7 @@ class UploadImage extends StatelessWidget {
                       fit: BoxFit.cover,
                     ),
                   ),
-                  SizedBox(height: h * 0.03),
+                  SizedBox(height: h * 0.04),
                   Text(
                     AppStrings.tapToUpload,
                     style: AppTextStyles.inter400style16.copyWith(
@@ -80,7 +80,7 @@ class UploadImage extends StatelessWidget {
                       fontSize: 14,
                     ),
                   ),
-                  SizedBox(height: h * 0.1),
+                  SizedBox(height: h * 0.07),
                   ElevatedButton(
                     onPressed: ontap,
                     onLongPress: onlongpress,

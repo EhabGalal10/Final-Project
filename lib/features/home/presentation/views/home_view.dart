@@ -28,7 +28,7 @@ class HomeView extends StatelessWidget {
           clipBehavior: Clip.none,
           title: Text(
             AppStrings.brainMriDiagnosis,
-            style: AppTextStyles.inter900style30.copyWith(fontSize: 20),
+            style: AppTextStyles.inter700style30.copyWith(fontSize: 20),
           ),
           centerTitle: true,
           actions: [SubLogoHome()],
@@ -44,7 +44,7 @@ class HomeView extends StatelessWidget {
                   Navigator.pushNamed(
                     context,
                     '/diagnosisView',
-                    arguments: {'image': image,'name': name},
+                    arguments: {'image': image, 'name': name},
                   );
                 }
               },

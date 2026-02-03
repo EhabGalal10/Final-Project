@@ -38,7 +38,7 @@ class SignInView extends StatelessWidget {
               SliverToBoxAdapter(
                 child: Text(
                   AppStrings.welcomeBack,
-                  style: AppTextStyles.inter900style30,
+                  style: AppTextStyles.inter700style30,
                   textAlign: TextAlign.center,
                 ),
               ),

@@ -32,7 +32,7 @@ class SignupView extends StatelessWidget {
                 SubLogoSignUp(),
                 Text(
                   AppStrings.createAccount,
-                  style: AppTextStyles.inter900style30,
+                  style: AppTextStyles.inter700style30,
                   textAlign: TextAlign.center,
                 ),
                 Text(

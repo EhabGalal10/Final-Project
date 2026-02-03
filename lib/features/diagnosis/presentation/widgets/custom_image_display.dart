@@ -30,7 +30,7 @@ class CustomDisplayImage extends StatelessWidget {
             padding: const EdgeInsets.only(left: 16.0, top: 16.0),
             child: Text(
               AppStrings.uploadedMriScan,
-              style: AppTextStyles.inter900style30.copyWith(fontSize: 18),
+              style: AppTextStyles.inter700style30.copyWith(fontSize: 18),
             ),
           ),
           SizedBox(height: 6),
@@ -49,11 +49,11 @@ class CustomDisplayImage extends StatelessWidget {
             children: [
               Container(
                 height: h * 0.3,
-                width: w * 0.7,
+                width: w * 0.8,
                 decoration: BoxDecoration(
                   image: DecorationImage(
                     image: FileImage(image!),
-                    fit: BoxFit.fitWidth,
+                    fit: BoxFit.cover,
                   ),
                   borderRadius: BorderRadius.all(Radius.circular(10)),
                 ),
@@ -91,12 +91,17 @@ class CustomDisplayImage extends StatelessWidget {
                         fontSize: 12,
                       ),
                     ),
-                    Text(
-                      'File : $name',
-                      overflow: TextOverflow.clip,
-                      style: AppTextStyles.inter400style16.copyWith(
-                        color: Color(0xff6B7280),
-                        fontSize: 12,
+                    SizedBox(
+                      width: w * 0.46,
+                      child: Text(
+                        'File : $name',
+                        maxLines: 1,
+                        textAlign: TextAlign.end,
+                        overflow: TextOverflow.ellipsis,
+                        style: AppTextStyles.inter400style16.copyWith(
+                          color: Color(0xff6B7280),
+                          fontSize: 12,
+                        ),
                       ),
                     ),
                   ],
