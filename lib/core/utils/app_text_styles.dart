@@ -31,4 +31,9 @@ abstract class AppTextStyles {
     color: Colors.black87,
     fontFamily: 'Inter',
   );
+  static final TextStyle interRegularstyle12 = TextStyle(
+    fontSize: 12,
+    color: Color(0xff6B7280),
+    fontFamily: 'Inter',
+  );
 }

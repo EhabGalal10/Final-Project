@@ -6,9 +6,13 @@ import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
 
 class UploadImage extends StatelessWidget {
-  const UploadImage({super.key,required this.ontap,required this.onlongpress});
-  final VoidCallback? ontap ;
-  final VoidCallback? onlongpress ;
+  const UploadImage({
+    super.key,
+    required this.ontap,
+    required this.onlongpress,
+  });
+  final VoidCallback? ontap;
+  final VoidCallback? onlongpress;
   @override
   Widget build(BuildContext context) {
     double h = MediaQuery.of(context).size.height;
@@ -64,6 +68,13 @@ class UploadImage extends StatelessWidget {
                   SizedBox(height: 8),
                   Text(
                     AppStrings.imageSupport,
+                    style: AppTextStyles.inter400style16.copyWith(
+                      color: Color(0xff6B7280),
+                      fontSize: 14,
+                    ),
+                  ),
+                  Text(
+                    'one tap to select image from gallery\nlong press to take photo from camera',
                     style: AppTextStyles.inter400style16.copyWith(
                       color: Color(0xff6B7280),
                       fontSize: 14,

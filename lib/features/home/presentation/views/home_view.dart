@@ -1,5 +1,6 @@
 import 'dart:io';
 import 'package:final_project/core/functions/image_picker.dart';
+import 'package:final_project/core/utils/app_strings.dart';
 import 'package:final_project/core/utils/app_text_styles.dart';
 import 'package:final_project/features/home/presentation/cubits/cubit/home_cubit.dart';
 import 'package:final_project/features/home/presentation/widgets/drawer.dart';
@@ -26,7 +27,7 @@ class HomeView extends StatelessWidget {
           actionsPadding: EdgeInsets.symmetric(horizontal: 16),
           clipBehavior: Clip.none,
           title: Text(
-            'Brain MRI Diagnosis',
+            AppStrings.brainMriDiagnosis,
             style: AppTextStyles.inter900style30.copyWith(fontSize: 20),
           ),
           centerTitle: true,
@@ -39,10 +40,11 @@ class HomeView extends StatelessWidget {
                 String? imagePath = await pickImageFromGallery();
                 if (imagePath != null) {
                   File image = File(imagePath);
+                  String name = basename(imagePath);
                   Navigator.pushNamed(
                     context,
                     '/diagnosisView',
-                    arguments: {'image': image},
+                    arguments: {'image': image,'name': name},
                   );
                 }
               },
@@ -50,7 +52,7 @@ class HomeView extends StatelessWidget {
                 String? imagePath = await pickImageFromCamera();
                 if (imagePath != null) {
                   File image = File(imagePath);
-                  String name =   basename(image.path);
+                  String name = basename(image.path);
                   Navigator.pushNamed(
                     context,
                     '/diagnosisView',
