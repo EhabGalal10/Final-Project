@@ -36,6 +36,7 @@ class DiagnosisView extends StatelessWidget {
           CustomDiagnosisResult(),
           SizedBox(height: 24),
           CustomImportantNotes(),
+          SizedBox(height: 24),
         ],
       ),
     );
