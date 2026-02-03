@@ -3,15 +3,15 @@ import 'package:final_project/core/utils/app_strings.dart';
 import 'package:final_project/core/utils/app_text_styles.dart';
 import 'package:flutter/material.dart';
 
-class CustomDiagnosisResult extends StatelessWidget {
-  const CustomDiagnosisResult({super.key});
+class CustomImportantNotes extends StatelessWidget {
+  const CustomImportantNotes({super.key});
 
   @override
   Widget build(BuildContext context) {
     double h = MediaQuery.of(context).size.height;
     return Container(
       margin: EdgeInsets.only(left: 24, right: 24),
-      height: h * 0.37,
+      height: h * 0.31,
       decoration: const BoxDecoration(
         color: Colors.white,
         borderRadius: BorderRadius.all(Radius.circular(16)),
@@ -22,18 +22,11 @@ class CustomDiagnosisResult extends StatelessWidget {
           Padding(
             padding: const EdgeInsets.only(left: 16.0, top: 16.0),
             child: Text(
-              AppStrings.diagnosisResults,
+              AppStrings.importantNotice,
               style: AppTextStyles.inter700style30.copyWith(fontSize: 18),
             ),
           ),
-          SizedBox(height: 6),
-          Padding(
-            padding: const EdgeInsets.only(left: 16.0),
-            child: Text(
-              AppStrings.aiModelPrediction,
-              style: AppTextStyles.interRegularstyle12.copyWith(fontSize: 14),
-            ),
-          ),
+
           SizedBox(height: 16),
           Divider(color: Color(0xffE5E7EB)),
           SizedBox(height: 16),
@@ -49,44 +42,24 @@ class CustomDiagnosisResult extends StatelessWidget {
               children: [
                 Row(
                   children: [
-                    CircleAvatar(
-                      radius: 8,
-                      backgroundColor: AppColors.primaryColor,
-                    ),
+                    Icon(Icons.info, color: AppColors.primaryColor, size: 18),
                     SizedBox(width: 12),
                     Text(
-                      'Primary Diagnosis',
+                      AppStrings.importantNotice,
                       style: AppTextStyles.interMediumstyle16.copyWith(
                         color: AppColors.primaryColor,
                         fontSize: 14,
                       ),
                     ),
-                    Spacer(),
-                    Container(
-                      padding: EdgeInsets.symmetric(horizontal: 8, vertical: 7),
-                      decoration: BoxDecoration(
-                        color: AppColors.primaryColor,
-                        borderRadius: BorderRadius.circular(18),
-                      ),
-                      child: Text(
-                        "High Confidence",
-                        style: AppTextStyles.interMediumstyle16.copyWith(
-                          color: Colors.white,
-                          fontSize: 12,
-                        ),
-                      ),
-                    ),
                   ],
                 ),
-                SizedBox(height: 12),
+
                 Text(
-                  'Normal Brain Tissue',
-                  style: AppTextStyles.inter700style30.copyWith(fontSize: 20),
-                ),
-                SizedBox(height: 8),
-                Text(
-                  'No significant abnormalities detected in the brain tissue structure and morphology.',
-                  style: AppTextStyles.inter400style16.copyWith(fontSize: 14),
+                  'This AI diagnosis is for screening purposes only. Please consult with a qualified radiologist or healthcare professional for final diagnosis and treatment recommendations.',
+                  style: AppTextStyles.inter400style16.copyWith(
+                    fontSize: 14,
+                    color: Color(0xff1D4ED8),
+                  ),
                 ),
               ],
             ),

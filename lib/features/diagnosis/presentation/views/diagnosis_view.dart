@@ -2,6 +2,7 @@ import 'package:final_project/core/utils/app_strings.dart';
 import 'package:final_project/core/utils/app_text_styles.dart';
 import 'package:final_project/features/diagnosis/presentation/widgets/custom_diagnosis_result.dart';
 import 'package:final_project/features/diagnosis/presentation/widgets/custom_image_display.dart';
+import 'package:final_project/features/diagnosis/presentation/widgets/important_notes.dart';
 import 'package:flutter/material.dart';
 
 class DiagnosisView extends StatelessWidget {
@@ -33,6 +34,8 @@ class DiagnosisView extends StatelessWidget {
         children: [
           CustomDisplayImage(image: image['image'], name: image['name']),
           CustomDiagnosisResult(),
+          SizedBox(height: 24),
+          CustomImportantNotes(),
         ],
       ),
     );
