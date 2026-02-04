@@ -76,14 +76,37 @@ class UploadImage extends StatelessWidget {
                       fontSize: 14,
                     ),
                   ),
-                  Text(
-                    'one tap to select image from gallery\nlong press to take photo from camera',
-                    style: AppTextStyles.inter400style16.copyWith(
-                      color: Color(0xff6B7280),
-                      fontSize: 14,
+                  Container(
+                    margin: EdgeInsets.only(top: 16),
+
+                    child: Row(
+                      mainAxisAlignment: MainAxisAlignment.center,
+                      children: [
+                        Text(
+                          'One tap',
+                          style: TextStyle(color: Color(0xff6B7280)),
+                        ),
+                        Icon(Icons.arrow_right_alt, color: Color(0xff6B7280)),
+                        Icon(Icons.folder_open, color: Color(0xff6B7280)),
+                      ],
                     ),
                   ),
-                  SizedBox(height: h * 0.07),
+                  Container(
+                    margin: EdgeInsets.only(top: 8),
+
+                    child: Row(
+                      mainAxisAlignment: MainAxisAlignment.center,
+                      children: [
+                        Text(
+                          'Long press',
+                          style: TextStyle(color: Color(0xff6B7280)),
+                        ),
+                        Icon(Icons.arrow_right_alt, color: Color(0xff6B7280)),
+                        Icon(Icons.camera_alt, color: Color(0xff6B7280)),
+                      ],
+                    ),
+                  ),
+                  SizedBox(height: h * 0.04),
                   ElevatedButton(
                     onPressed: ontap,
                     onLongPress: onlongpress,
