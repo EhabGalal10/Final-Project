@@ -4,6 +4,7 @@ import 'package:final_project/features/diagnosis/presentation/widgets/custom_but
 import 'package:final_project/features/diagnosis/presentation/widgets/custom_diagnosis_result.dart';
 import 'package:final_project/features/diagnosis/presentation/widgets/custom_image_display.dart';
 import 'package:final_project/features/diagnosis/presentation/widgets/important_notes.dart';
+import 'package:final_project/features/home/data/models/diagnosis_model.dart';
 import 'package:flutter/material.dart';
 
 class DiagnosisView extends StatelessWidget {
@@ -11,8 +12,9 @@ class DiagnosisView extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    Map<String, dynamic> image =
+    Map<String, dynamic> modelResult =
         ModalRoute.of(context)!.settings.arguments as Map<String, dynamic>;
+      DiagnosisModel result =  modelResult['diagnosis'];
     return Scaffold(
       floatingActionButton: FloatingActionButton(
         onPressed: () {
@@ -41,8 +43,8 @@ class DiagnosisView extends StatelessWidget {
       body: ListView(
         physics: BouncingScrollPhysics(),
         children: [
-          CustomDisplayImage(image: image['image'], name: image['name']),
-          CustomDiagnosisResult(),
+          CustomDisplayImage(image:result.image, name: result.imagename),
+          CustomDiagnosisResult(result: result),
           SizedBox(height: 24),
           CustomImportantNotes(),
           SizedBox(height: 24),

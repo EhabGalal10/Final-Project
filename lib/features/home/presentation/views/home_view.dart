@@ -1,15 +1,17 @@
 import 'dart:io';
 import 'package:final_project/core/functions/image_picker.dart';
+import 'package:final_project/core/utils/app_colors.dart';
 import 'package:final_project/core/utils/app_strings.dart';
 import 'package:final_project/core/utils/app_text_styles.dart';
+import 'package:final_project/features/home/data/models/diagnosis_model.dart';
 import 'package:final_project/features/home/presentation/cubits/cubit/home_cubit.dart';
+import 'package:final_project/features/home/presentation/cubits/cubit/home_state.dart';
 import 'package:final_project/features/home/presentation/widgets/drawer.dart';
 import 'package:final_project/features/home/presentation/widgets/quick_actions.dart';
 import 'package:final_project/features/home/presentation/widgets/sub_logo_home.dart';
 import 'package:final_project/features/home/presentation/widgets/upload_image.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:path/path.dart';
 
 class HomeView extends StatelessWidget {
   const HomeView({super.key});
@@ -33,36 +35,71 @@ class HomeView extends StatelessWidget {
           centerTitle: true,
           actions: [SubLogoHome()],
         ),
-        body: ListView(
-          children: [
-            UploadImage(
-              ontap: () async {
-                String? imagePath = await pickImageFromGallery();
-                if (imagePath != null) {
-                  File image = File(imagePath);
-                  String name = basename(imagePath);
-                  Navigator.pushNamed(
-                    context,
-                    '/diagnosisView',
-                    arguments: {'image': image, 'name': name},
-                  );
-                }
-              },
-              onlongpress: () async {
-                String? imagePath = await pickImageFromCamera();
-                if (imagePath != null) {
-                  File image = File(imagePath);
-                  String name = basename(image.path);
-                  Navigator.pushNamed(
-                    context,
-                    '/diagnosisView',
-                    arguments: {'image': image, 'name': name},
-                  );
-                }
-              },
-            ),
-            QuickActions(),
-          ],
+        body: Builder(
+          builder: (context) => BlocConsumer<HomeCubit, HomeState>(
+            listener: (context, state) {
+              if (state is DiagnosisFailure) {
+                Navigator.pop(context);
+                ScaffoldMessenger.of(context).showSnackBar(
+                  SnackBar(
+                    content: Text(state.message),
+                    backgroundColor: Colors.red,
+                  ),
+                );
+              } else if (state is DiagnosisSuccess) {
+                ScaffoldMessenger.of(context).showSnackBar(
+                  SnackBar(
+                    content: Text('Diagnosis done successfully'),
+                    backgroundColor: Colors.green,
+                  ),
+                );
+              }
+            },
+            builder: (context, state) {
+              if (state is DiagnosisLoading) {
+                return Center(
+                  child: CircularProgressIndicator(
+                    color: AppColors.primaryColor,
+                  ),
+                );
+              }
+              return ListView(
+                children: [
+                  UploadImage(
+                    ontap: () async {
+                      String? imagePath = await pickImageFromGallery();
+                      if (imagePath != null) {
+                        File image = File(imagePath);
+                        DiagnosisModel? diagnosisModel = await context
+                            .read<HomeCubit>()
+                            .getPrediction(image);
+                        Navigator.pushNamed(
+                          context,
+                          '/diagnosisView',
+                          arguments: {'diagnosis': diagnosisModel},
+                        );
+                      }
+                    },
+                    onlongpress: () async {
+                      String? imagePath = await pickImageFromCamera();
+                      if (imagePath != null) {
+                        File image = File(imagePath);
+                        DiagnosisModel? diagnosisModel = await context
+                            .read<HomeCubit>()
+                            .getPrediction(image);
+                        Navigator.pushNamed(
+                          context,
+                          '/diagnosisView',
+                          arguments: {'diagnosis': diagnosisModel},
+                        );
+                      }
+                    },
+                  ),
+                  QuickActions(),
+                ],
+              );
+            },
+          ),
         ),
       ),
     );

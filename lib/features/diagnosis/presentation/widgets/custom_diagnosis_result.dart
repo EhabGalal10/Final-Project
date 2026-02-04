@@ -1,11 +1,12 @@
 import 'package:final_project/core/utils/app_colors.dart';
 import 'package:final_project/core/utils/app_strings.dart';
 import 'package:final_project/core/utils/app_text_styles.dart';
+import 'package:final_project/features/home/data/models/diagnosis_model.dart';
 import 'package:flutter/material.dart';
 
 class CustomDiagnosisResult extends StatelessWidget {
-  const CustomDiagnosisResult({super.key});
-
+  const CustomDiagnosisResult({super.key, required this.result});
+  final DiagnosisModel result;
   @override
   Widget build(BuildContext context) {
     double h = MediaQuery.of(context).size.height;
@@ -72,7 +73,7 @@ class CustomDiagnosisResult extends StatelessWidget {
                         borderRadius: BorderRadius.circular(18),
                       ),
                       child: Text(
-                        "High Confidence",
+                        '${result.confidence*100} %',
                         style: AppTextStyles.interMediumstyle16.copyWith(
                           color: Colors.white,
                           fontSize: 12,
@@ -83,7 +84,7 @@ class CustomDiagnosisResult extends StatelessWidget {
                 ),
                 SizedBox(height: 12),
                 Text(
-                  'Normal Brain Tissue',
+                  result.diagnosis,
                   style: AppTextStyles.inter700style30.copyWith(fontSize: 20),
                 ),
                 SizedBox(height: 8),
