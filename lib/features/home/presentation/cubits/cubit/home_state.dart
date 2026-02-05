@@ -11,3 +11,11 @@ final class DiagnosisFailure extends HomeState {
 }
 
 final class DiagnosisSuccess extends HomeState {}
+final class HistorySuccess extends HomeState {}
+
+final class HistoryLoading extends HomeState {}
+
+final class HistoryFailure extends HomeState {
+  final String message;
+  HistoryFailure({required this.message});
+}

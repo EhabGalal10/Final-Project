@@ -51,6 +51,7 @@ class HomeCubit extends Cubit<HomeState> {
         emit(DiagnosisFailure(message: 'Select Another image'));
         return null;
       }
+      addToHistory(diagnosisModel);
       emit(DiagnosisSuccess());
 
       return diagnosisModel;
@@ -58,5 +59,35 @@ class HomeCubit extends Cubit<HomeState> {
       emit(DiagnosisFailure(message: e.toString()));
       throw Exception('Error predicting: $e');
     }
+  }
+
+  void addToHistory(DiagnosisModel diagnosisModel) async {
+    final uid = FirebaseAuth.instance.currentUser!.uid;
+    await FirebaseFirestore.instance
+        .collection('users')
+        .doc(uid)
+        .collection('history')
+        .add({
+          'diagnosis': diagnosisModel.diagnosis,
+          'confidence': diagnosisModel.confidence,
+          'image': diagnosisModel.image.path,
+          'date': DateTime.now(),
+        });
+  }
+Future<List<Map<String, dynamic>>>  getHistory() async {
+    final uid = FirebaseAuth.instance.currentUser!.uid;
+    try {
+      emit(HistoryLoading());
+    final snapshot = await FirebaseFirestore.instance
+      .collection('users')
+      .doc(uid)
+      .collection('history').orderBy('date', descending: true)
+      .get();
+      emit(HistorySuccess());
+  return snapshot.docs.map((doc) => doc.data()).toList();
+} on Exception catch (e) {
+  emit(HistoryFailure(message: e.toString()));
+  throw Exception('Error fetching history: $e');
+}
   }
 }
