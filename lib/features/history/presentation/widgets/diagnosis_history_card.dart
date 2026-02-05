@@ -15,7 +15,7 @@ class DiagnosisHistoryCard extends StatelessWidget {
         borderRadius: BorderRadius.circular(16),
         boxShadow: [
           BoxShadow(
-            color: Colors.black.withValues(alpha: 0.05),
+            color: Colors.black.withValues(alpha: 0.1),
             blurRadius: 10,
             offset: const Offset(0, 4),
           ),
@@ -35,9 +35,9 @@ class DiagnosisHistoryCard extends StatelessWidget {
               fit: BoxFit.cover,
             ),
           ),
-    
+
           const SizedBox(width: 12),
-    
+
           // Info
           Expanded(
             child: Padding(
@@ -53,14 +53,14 @@ class DiagnosisHistoryCard extends StatelessWidget {
                     ),
                   ),
                   const SizedBox(height: 6),
-    
+
                   Text(
                     'Date: ${model['date'].toDate().day}/${model['date'].toDate().month}/${model['date'].toDate().year}',
                     style: TextStyle(fontSize: 13, color: Colors.grey.shade600),
                   ),
-    
+
                   const SizedBox(height: 8),
-    
+
                   // Confidence
                   Row(
                     children: [
