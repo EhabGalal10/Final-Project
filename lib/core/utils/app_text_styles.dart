@@ -15,7 +15,7 @@ abstract class AppTextStyles {
     color: Colors.white,
     fontFamily: 'Inter',
   );
-  static final TextStyle inter800style40 = TextStyle(
+  static final TextStyle inter800style40shadow = TextStyle(
     fontSize: 40,
     fontWeight: FontWeight.w800,
     color: AppColors.primaryColor,
@@ -44,7 +44,7 @@ abstract class AppTextStyles {
     color: Color(0xff6B7280),
     fontFamily: 'Inter',
   );
-  static final TextStyle inter700style30 = TextStyle(
+  static final TextStyle inter700style30shadow = TextStyle(
     fontSize: 30,
     fontWeight: FontWeight.w700,
     color: AppColors.primaryColor,
@@ -56,5 +56,11 @@ abstract class AppTextStyles {
         offset: const Offset(0, 1),
       ),
     ],
+  );
+  static final TextStyle inter700style20 = TextStyle(
+    fontSize: 20,
+    fontWeight: FontWeight.w700,
+    color: AppColors.primaryColor,
+    fontFamily: 'Inter',
   );
 }

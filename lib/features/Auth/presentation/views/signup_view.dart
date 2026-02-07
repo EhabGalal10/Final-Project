@@ -43,7 +43,7 @@ class SignupView extends StatelessWidget {
                   },
                   child: Text(
                     AppStrings.createAccount,
-                    style: AppTextStyles.inter700style30,
+                    style: AppTextStyles.inter700style30shadow,
                     textAlign: TextAlign.center,
                   ),
                 ),

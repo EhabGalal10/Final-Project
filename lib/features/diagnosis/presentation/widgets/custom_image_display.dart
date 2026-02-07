@@ -33,7 +33,7 @@ class CustomDisplayImage extends StatelessWidget {
             padding: const EdgeInsets.only(left: 16.0, top: 16.0),
             child: Text(
               AppStrings.uploadedMriScan,
-              style: AppTextStyles.inter800style40.copyWith(fontSize: 18),
+              style: AppTextStyles.inter800style40shadow.copyWith(fontSize: 18),
             ),
           ),
           SizedBox(height: 6),

@@ -31,7 +31,7 @@ class QuickActions extends StatelessWidget {
         children: [
           Text(
             AppStrings.quickActions,
-            style: AppTextStyles.inter800style40.copyWith(fontSize: 18),
+            style: AppTextStyles.inter700style20.copyWith(fontSize: 18),
           ),
           SizedBox(height: 13),
           Row(

@@ -38,7 +38,13 @@ class CustomTopDrawer extends StatelessWidget {
           padding: const EdgeInsets.symmetric(vertical: 40),
           decoration: const BoxDecoration(
             gradient: LinearGradient(
-              colors: [Color(0xff6A11CB), Color(0xff2575FC)],
+              colors: [
+                Color.fromARGB(255, 87, 138, 227),
+                Color(0xffc1e1fd),
+                Color(0xffc8e4fe),
+
+                Color.fromARGB(255, 255, 255, 255),
+              ],
               begin: Alignment.topLeft,
               end: Alignment.bottomRight,
             ),
@@ -54,7 +60,7 @@ class CustomTopDrawer extends StatelessWidget {
               Text(
                 snapshot.data!,
                 style: const TextStyle(
-                  color: Colors.white,
+                  color: Colors.black,
                   fontSize: 18,
                   fontWeight: FontWeight.w600,
                 ),
