@@ -30,7 +30,7 @@ class CustomButtons extends StatelessWidget {
                 SizedBox(width: 12),
                 Text(
                   AppStrings.downloadReport,
-                  style: AppTextStyles.inter700style30.copyWith(
+                  style: AppTextStyles.inter800style40.copyWith(
                     fontSize: 18,
                     color: Colors.white,
                   ),

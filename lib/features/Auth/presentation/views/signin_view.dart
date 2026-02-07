@@ -1,4 +1,3 @@
-import 'package:final_project/core/utils/app_colors.dart';
 import 'package:final_project/core/utils/app_strings.dart';
 import 'package:final_project/core/utils/app_text_styles.dart';
 import 'package:final_project/features/Auth/presentation/cubit/auth_cubit.dart';
@@ -22,12 +21,14 @@ class SignInView extends StatelessWidget {
           height: double.infinity,
           decoration: const BoxDecoration(
             gradient: LinearGradient(
-              begin: Alignment.topCenter,
-              end: Alignment.bottomCenter,
+              begin: Alignment.topRight,
+              end: Alignment.bottomLeft,
               colors: [
-                AppColors.loginGradientbackgroundColorTop,
-                AppColors.loginGradientbackgroundColorBottom,
+                Color(0xffc8e4fe),
+                Color(0xffc1e1fd),
+                Color.fromARGB(255, 255, 255, 255),
               ],
+              stops: [0, 0.4, 1.0],
             ),
           ),
           child: CustomScrollView(
@@ -36,13 +37,21 @@ class SignInView extends StatelessWidget {
               SliverToBoxAdapter(child: SubLogoSignin()),
               SliverToBoxAdapter(child: SizedBox(height: 24)),
               SliverToBoxAdapter(
-                child: Text(
-                  AppStrings.welcomeBack,
-                  style: AppTextStyles.inter700style30,
-                  textAlign: TextAlign.center,
+                child: ShaderMask(
+                  shaderCallback: (bounds) {
+                    return LinearGradient(
+                      colors: [Color(0xff549de3), Color(0xffc8e4fe)],
+                    ).createShader(bounds);
+                  },
+
+                  child: Text(
+                    AppStrings.welcomeBack,
+                    style: AppTextStyles.inter800style40,
+                    textAlign: TextAlign.center,
+                  ),
                 ),
               ),
-              SliverToBoxAdapter(child: SizedBox(height: 10)),
+              SliverToBoxAdapter(child: SizedBox(height: 5)),
               SliverToBoxAdapter(
                 child: Text(
                   AppStrings.signInToContinue,
@@ -50,7 +59,7 @@ class SignInView extends StatelessWidget {
                   textAlign: TextAlign.center,
                 ),
               ),
-              SliverToBoxAdapter(child: SizedBox(height: h * 0.1)),
+              SliverToBoxAdapter(child: SizedBox(height: h * 0.05)),
               SliverToBoxAdapter(child: FormLogin()),
               SliverToBoxAdapter(
                 child: HaveAnAccount(

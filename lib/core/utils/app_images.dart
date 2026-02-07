@@ -52,4 +52,6 @@ class Assets {
   /// Assets for assetsImagesUploadImage
   /// assets/images/uploadImage.png
   static const String assetsImagesUploadImage = "assets/images/uploadImage.svg";
+
+ 
 }

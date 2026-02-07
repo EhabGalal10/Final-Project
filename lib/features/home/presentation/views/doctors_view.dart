@@ -12,7 +12,7 @@ class DoctorsView extends StatelessWidget {
       appBar: AppBar(
         title: Text(
           "Doctors",
-          style: AppTextStyles.inter700style30.copyWith(fontSize: 20),
+          style: AppTextStyles.inter800style40.copyWith(fontSize: 20),
         ),
         centerTitle: true,
       ),

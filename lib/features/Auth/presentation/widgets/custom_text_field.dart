@@ -1,3 +1,4 @@
+import 'package:final_project/core/utils/app_colors.dart';
 import 'package:final_project/core/utils/app_text_styles.dart';
 import 'package:flutter/material.dart';
 
@@ -7,14 +8,16 @@ class CustomTextField extends StatelessWidget {
     required this.icon,
     required this.hintText,
     this.obscureText = false,
-    this.fillColor = Colors.white, this.validator, this.onChanged,
+    this.fillColor = const Color(0xffeceff4),
+    this.validator,
+    this.onChanged,
   });
   final IconData icon;
   final String hintText;
   final bool obscureText;
   final Color? fillColor;
   final String? Function(String?)? validator;
- final void Function(String)? onChanged;
+  final void Function(String)? onChanged;
   @override
   Widget build(BuildContext context) {
     return TextFormField(
@@ -29,7 +32,7 @@ class CustomTextField extends StatelessWidget {
         filled: true,
         fillColor: fillColor,
         hintText: hintText,
-        prefixIcon: Icon(icon, color: Color(0Xff9CA3AF)),
+        prefixIcon: Icon(icon, color: AppColors.primaryColor),
         hintStyle: AppTextStyles.inter400style16.copyWith(
           color: Color(0XffADAEBC),
         ),
