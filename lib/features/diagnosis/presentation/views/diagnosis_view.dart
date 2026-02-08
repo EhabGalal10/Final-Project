@@ -1,3 +1,4 @@
+import 'package:final_project/core/utils/app_colors.dart';
 import 'package:final_project/core/utils/app_strings.dart';
 import 'package:final_project/core/utils/app_text_styles.dart';
 import 'package:final_project/features/diagnosis/presentation/widgets/custom_buttons.dart';
@@ -20,18 +21,19 @@ class DiagnosisView extends StatelessWidget {
         onPressed: () {
           Navigator.pop(context);
         },
-        backgroundColor: Colors.grey.shade800,
-        child: Icon(Icons.refresh, size: 27, color: Colors.white),
+        backgroundColor: AppColors.findDoctorContainerColor,
+        child: Icon(Icons.refresh, size: 30, color: AppColors.primaryColor),
       ),
       backgroundColor: Color(0xffF9FAFB),
       appBar: AppBar(
         backgroundColor: Colors.white,
+        forceMaterialTransparency: true,
         title: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
             Text(
               AppStrings.mriDiagnosis,
-              style: AppTextStyles.inter800style40shadow.copyWith(fontSize: 20),
+              style: AppTextStyles.inter700style20.copyWith(fontSize: 20),
             ),
             Text(
               AppStrings.aiPowered,

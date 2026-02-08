@@ -8,16 +8,40 @@ class CustomDoctorCard extends StatelessWidget {
   final DoctorsModel doctor;
   @override
   Widget build(BuildContext context) {
-    return Card(
+    return Container(
       margin: const EdgeInsets.only(bottom: 12),
-      elevation: 4,
-      shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(16)),
+      decoration: BoxDecoration(
+        borderRadius: BorderRadius.circular(16),
+      
+
+        gradient: const LinearGradient(
+          begin: Alignment.topLeft,
+          end: Alignment.bottomRight,
+          colors: [
+            Color(0xffc8e4fe),
+            Color(0xffc1e1fd),
+            Color.fromARGB(187, 255, 255, 255),
+          ],
+          stops: [0, 0.6, 1.0],
+        ),
+        boxShadow: [
+          BoxShadow(
+            color: Colors.grey.withOpacity(0.3),
+            blurRadius: 6,
+            offset: const Offset(0, 7),
+          ),
+        ],
+      ),
       child: ListTile(
         contentPadding: const EdgeInsets.all(16),
         leading: CircleAvatar(
           radius: 28,
           backgroundColor: Colors.blue.shade100,
-          child: const Icon(Icons.person, color: Colors.blue, size: 30),
+          child: const Icon(
+            Icons.person,
+            color: AppColors.primaryColor,
+            size: 30,
+          ),
         ),
         title: Text(
           doctor.name!,
@@ -47,7 +71,6 @@ class CustomDoctorCard extends StatelessWidget {
         trailing: IconButton(
           icon: const Icon(Icons.call, color: AppColors.primaryColor),
           onPressed: () async {
-            // await launch('tel://${doctor.phone}');
             await FlutterPhoneDirectCaller.callNumber(doctor.phone!);
           },
         ),
