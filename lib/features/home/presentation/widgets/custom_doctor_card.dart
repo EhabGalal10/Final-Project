@@ -12,17 +12,16 @@ class CustomDoctorCard extends StatelessWidget {
       margin: const EdgeInsets.only(bottom: 12),
       decoration: BoxDecoration(
         borderRadius: BorderRadius.circular(16),
-      
 
         gradient: const LinearGradient(
           begin: Alignment.topLeft,
           end: Alignment.bottomRight,
           colors: [
-            Color(0xffc8e4fe),
+            Color.fromARGB(255, 98, 154, 207),
             Color(0xffc1e1fd),
-            Color.fromARGB(187, 255, 255, 255),
+            Color.fromARGB(255, 255, 255, 255),
           ],
-          stops: [0, 0.6, 1.0],
+          stops: [0, 0.8, 1.0],
         ),
         boxShadow: [
           BoxShadow(

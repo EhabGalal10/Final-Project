@@ -2,6 +2,7 @@ import 'package:final_project/core/utils/app_strings.dart';
 import 'package:final_project/core/utils/app_text_styles.dart';
 import 'package:final_project/features/Auth/presentation/cubit/auth_cubit.dart';
 import 'package:final_project/features/Auth/presentation/widgets/form_signup.dart';
+import 'package:final_project/features/Auth/presentation/widgets/sub_logo_signin.dart';
 import 'package:final_project/features/Auth/presentation/widgets/sub_logo_signup.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
@@ -20,27 +21,50 @@ class SignupView extends StatelessWidget {
           height: double.infinity,
           decoration: BoxDecoration(
             gradient: LinearGradient(
-              begin: Alignment.topCenter,
-              end: Alignment.bottomCenter,
+              begin: Alignment.topRight,
+              end: Alignment.bottomLeft,
               colors: [
                 Color(0xffc8e4fe),
-                Color(0xffc1e1fd),
                 Color.fromARGB(255, 255, 255, 255),
+                Color.fromARGB(255, 255, 255, 255),
+                Color(0xffc1e1fd),
               ],
-              stops: [0, 0.4, 1.0],
+              stops: [0.1, 0.22, 0.75, 1.0],
             ),
           ),
           child: SingleChildScrollView(
             child: Column(
               children: [
                 SizedBox(height: h * 0.06),
-                SubLogoSignUp(),
+                ShaderMask(
+                  shaderCallback: (Rect bounds) {
+                    return LinearGradient(
+                      begin: Alignment.topRight,
+                      end: Alignment.bottomLeft,
+                      colors: [
+                        Color.fromARGB(255, 5, 2, 172),
+                        Color.fromARGB(255, 85, 165, 241),
+                      ],
+                      stops: [0, 0.7],
+                    ).createShader(bounds);
+                  },
+                  blendMode: BlendMode.srcIn,
+                  child: SubLogoSignUp(),
+                ),
+
                 ShaderMask(
                   shaderCallback: (bounds) {
                     return LinearGradient(
-                      colors: [Color(0xff549de3), Color(0xffc8e4fe)],
+                      begin: Alignment.topLeft,
+                      end: Alignment.bottomRight,
+                      colors: [
+                        Color.fromARGB(255, 5, 2, 172),
+                        Color.fromARGB(255, 85, 165, 241),
+                      ],
+                      stops: [0, 0.9],
                     ).createShader(bounds);
                   },
+                  blendMode: BlendMode.srcIn,
                   child: Text(
                     AppStrings.createAccount,
                     style: AppTextStyles.inter700style30shadow,
