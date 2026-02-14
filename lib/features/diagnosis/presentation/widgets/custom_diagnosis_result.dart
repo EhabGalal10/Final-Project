@@ -73,7 +73,7 @@ class CustomDiagnosisResult extends StatelessWidget {
                         borderRadius: BorderRadius.circular(18),
                       ),
                       child: Text(
-                        '${result.confidence * 100} %',
+                        '${(result.confidence * 100).toStringAsFixed(2)} %',
                         style: AppTextStyles.interMediumstyle16.copyWith(
                           color: Colors.white,
                           fontSize: 12,

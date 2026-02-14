@@ -1,5 +1,3 @@
-import 'dart:io';
-
 import 'package:flutter/material.dart';
 
 class DiagnosisHistoryCard extends StatelessWidget {
@@ -28,8 +26,8 @@ class DiagnosisHistoryCard extends StatelessWidget {
             borderRadius: const BorderRadius.horizontal(
               left: Radius.circular(16),
             ),
-            child: Image.file(
-              File(model['image']),
+            child: Image.network(
+              model['image'],
               width: 110,
               height: 110,
               fit: BoxFit.cover,

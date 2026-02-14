@@ -6,6 +6,7 @@ import 'package:final_project/features/home/data/models/diagnosis_model.dart';
 import 'package:final_project/features/home/presentation/cubits/cubit/home_state.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:supabase_flutter/supabase_flutter.dart' hide MultipartFile;
 
 class HomeCubit extends Cubit<HomeState> {
   HomeCubit() : super(HomeInitial());
@@ -47,10 +48,10 @@ class HomeCubit extends Cubit<HomeState> {
         prediction,
         imageFile,
       );
-      if (diagnosisModel.confidence < 0.5) {
-        emit(DiagnosisFailure(message: 'Select Another image'));
-        return null;
-      }
+      // if (diagnosisModel.confidence < 0.5) {
+      //   emit(DiagnosisFailure(message: 'Select Another image'));
+      //   return null;
+      // }
       addToHistory(diagnosisModel);
       emit(DiagnosisSuccess());
 
@@ -60,9 +61,26 @@ class HomeCubit extends Cubit<HomeState> {
       throw Exception('Error predicting: $e');
     }
   }
+Future<String> uploadImageToSupabase(File image) async {
+  final supabase = Supabase.instance.client;
 
+  final fileName =
+      '${DateTime.now().millisecondsSinceEpoch}_${image.path.split('/').last}';
+
+  await supabase.storage
+      .from('history_images')
+      .upload(fileName, image);
+
+  final imageUrl = supabase.storage
+      .from('history_images')
+      .getPublicUrl(fileName);
+
+  return imageUrl;
+}
   void addToHistory(DiagnosisModel diagnosisModel) async {
     final uid = FirebaseAuth.instance.currentUser!.uid;
+    final imageUrl =
+      await uploadImageToSupabase(File(diagnosisModel.image.path));
     await FirebaseFirestore.instance
         .collection('users')
         .doc(uid)
@@ -70,8 +88,8 @@ class HomeCubit extends Cubit<HomeState> {
         .add({
           'diagnosis': diagnosisModel.diagnosis,
           'confidence': diagnosisModel.confidence,
-          'image': diagnosisModel.image.path,
-          'date': DateTime.now(),
+          'image': imageUrl,
+          'date': Timestamp.now(),
         });
   }
 Future<List<Map<String, dynamic>>>  getHistory() async {
