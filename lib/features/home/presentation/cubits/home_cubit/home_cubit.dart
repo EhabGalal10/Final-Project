@@ -3,7 +3,7 @@ import 'dart:io';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:dio/dio.dart';
 import 'package:final_project/features/home/data/models/diagnosis_model.dart';
-import 'package:final_project/features/home/presentation/cubits/history_cubit/history_cubit.dart';
+import 'package:final_project/features/history/presentation/cubits/history_cubit/history_cubit.dart';
 import 'package:final_project/features/home/presentation/cubits/home_cubit/home_state.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';

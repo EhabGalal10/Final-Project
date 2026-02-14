@@ -1,12 +1,10 @@
 import 'package:final_project/core/utils/app_text_styles.dart';
-import 'package:final_project/features/history/presentation/functions/delete_document.dart';
 import 'package:final_project/features/history/presentation/widgets/custom_loading_skeletonizer.dart';
 import 'package:final_project/features/history/presentation/widgets/diagnosis_history_card.dart';
-import 'package:final_project/features/home/presentation/cubits/history_cubit/history_cubit.dart';
-import 'package:final_project/features/home/presentation/cubits/history_cubit/history_state.dart';
+import 'package:final_project/features/history/presentation/cubits/history_cubit/history_cubit.dart';
+import 'package:final_project/features/history/presentation/cubits/history_cubit/history_state.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:skeletonizer/skeletonizer.dart';
 
 class HistoryView extends StatefulWidget {
   const HistoryView({super.key});
@@ -61,7 +59,7 @@ class _HistoryViewState extends State<HistoryView> {
                           ),
                         ),
                         onDismissed: (direction) {
-                          removeFromHistory(state.history[index]['date']);
+                        context.read<HistoryCubit>().removeFromHistory(state.history[index]['date']);
                         },
                         child: DiagnosisHistoryCard(
                           model: state.history[index],

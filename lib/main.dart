@@ -3,7 +3,7 @@ import 'package:final_project/features/Auth/presentation/views/signup_view.dart'
 import 'package:final_project/features/Splash/presentation/views/splash_view.dart';
 import 'package:final_project/features/diagnosis/presentation/views/diagnosis_view.dart';
 import 'package:final_project/features/history/presentation/views/history_view.dart';
-import 'package:final_project/features/home/presentation/cubits/history_cubit/history_cubit.dart';
+import 'package:final_project/features/history/presentation/cubits/history_cubit/history_cubit.dart';
 import 'package:final_project/features/home/presentation/cubits/home_cubit/home_cubit.dart';
 import 'package:final_project/features/home/presentation/views/doctors_view.dart';
 import 'package:final_project/features/home/presentation/views/home_view.dart';
