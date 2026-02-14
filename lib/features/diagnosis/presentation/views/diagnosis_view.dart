@@ -31,7 +31,7 @@ class DiagnosisView extends StatelessWidget {
           children: [
             Text(
               AppStrings.mriDiagnosis,
-              style: AppTextStyles.inter800style40.copyWith(fontSize: 20),
+              style: AppTextStyles.inter800style40shadow.copyWith(fontSize: 20),
             ),
             Text(
               AppStrings.aiPowered,

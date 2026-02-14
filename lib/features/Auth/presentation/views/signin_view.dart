@@ -46,7 +46,7 @@ class SignInView extends StatelessWidget {
 
                   child: Text(
                     AppStrings.welcomeBack,
-                    style: AppTextStyles.inter800style40,
+                    style: AppTextStyles.inter800style40shadow,
                     textAlign: TextAlign.center,
                   ),
                 ),

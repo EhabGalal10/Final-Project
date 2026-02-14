@@ -30,7 +30,7 @@ class HomeView extends StatelessWidget {
           clipBehavior: Clip.none,
           title: Text(
             AppStrings.brainMriDiagnosis,
-            style: AppTextStyles.inter800style40.copyWith(fontSize: 20),
+            style: AppTextStyles.inter700style20,
           ),
           centerTitle: true,
           actions: [SubLogoHome()],
