@@ -13,9 +13,9 @@ class DiagnosisHistoryCard extends StatelessWidget {
         borderRadius: BorderRadius.circular(16),
         boxShadow: [
           BoxShadow(
-            color: Colors.black.withValues(alpha: 0.1),
-            blurRadius: 10,
-            offset: const Offset(0, 4),
+            color: Colors.black.withValues(alpha: 0.06),
+            blurRadius: 12,
+            offset: const Offset(0, 6),
           ),
         ],
       ),
@@ -47,14 +47,18 @@ class DiagnosisHistoryCard extends StatelessWidget {
                     model['diagnosis'],
                     style: const TextStyle(
                       fontSize: 16,
-                      fontWeight: FontWeight.bold,
+                      fontWeight: FontWeight.w600,
+                      color: Color(0xff111827),
                     ),
                   ),
                   const SizedBox(height: 6),
 
                   Text(
                     'Date: ${model['date'].toDate().day}/${model['date'].toDate().month}/${model['date'].toDate().year}',
-                    style: TextStyle(fontSize: 13, color: Colors.grey.shade600),
+                    style: const TextStyle(
+                      fontSize: 13,
+                      color: Color(0xff6B7280),
+                    ),
                   ),
 
                   const SizedBox(height: 8),
@@ -64,16 +68,20 @@ class DiagnosisHistoryCard extends StatelessWidget {
                     children: [
                       Expanded(
                         child: LinearProgressIndicator(
-                          color: getConfidenceColor(model['confidence']),
                           value: model['confidence'],
-                          minHeight: 6,
+                          minHeight: 7,
+                          backgroundColor: const Color(0xffE5E7EB),
+                          color: getConfidenceColor(model['confidence']),
                           borderRadius: BorderRadius.circular(8),
                         ),
                       ),
                       const SizedBox(width: 8),
                       Text(
                         '${model['confidence'].toStringAsFixed(2)}%',
-                        style: const TextStyle(fontWeight: FontWeight.bold),
+                        style: const TextStyle(
+                          fontWeight: FontWeight.w600,
+                          color: Color(0xff374151),
+                        ),
                       ),
                     ],
                   ),
@@ -87,8 +95,8 @@ class DiagnosisHistoryCard extends StatelessWidget {
   }
 
   Color getConfidenceColor(double value) {
-    if (value >= 0.8) return Colors.green;
-    if (value >= 0.5) return Colors.orange;
-    return Colors.red;
+    if (value >= 0.8) return const Color(0xff16A34A); // أخضر
+    if (value >= 0.5) return const Color(0xffF59E0B); // برتقالي
+    return const Color(0xffDC2626); // أحمر
   }
 }

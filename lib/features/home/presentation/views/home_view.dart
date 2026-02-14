@@ -44,6 +44,7 @@ class HomeView extends StatelessWidget {
                   SnackBar(
                     content: Text(state.message),
                     backgroundColor: Colors.red,
+                    duration: Duration(seconds: 1),
                   ),
                 );
               } else if (state is DiagnosisSuccess) {
@@ -51,6 +52,7 @@ class HomeView extends StatelessWidget {
                   SnackBar(
                     content: Text('Diagnosis done successfully'),
                     backgroundColor: Colors.green,
+                    duration: Duration(seconds: 1),
                   ),
                 );
               }
