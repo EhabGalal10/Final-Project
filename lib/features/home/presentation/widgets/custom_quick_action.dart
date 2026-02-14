@@ -16,7 +16,7 @@ class CustomQuickActions extends StatelessWidget {
   Widget build(BuildContext context) {
     double h = MediaQuery.sizeOf(context).height;
     double w = MediaQuery.sizeOf(context).width;
-    return GestureDetector(
+    return InkWell(
       onTap: onTap,
       child: Container(
         width: w * 0.35,
