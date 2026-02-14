@@ -57,7 +57,26 @@ class HomeCubit extends Cubit<HomeState> {
       emit(DiagnosisSuccess());
 
       return diagnosisModel;
-    } catch (e) {
+    }on DioException catch (e) {
+
+    // ✅ Handle Timeout specifically
+    if (e.type == DioExceptionType.connectionTimeout ||
+        e.type == DioExceptionType.receiveTimeout ||
+        e.type == DioExceptionType.sendTimeout) {
+
+      emit(DiagnosisFailure(
+        message: 'Error timeout connecting to server',
+      ));
+    } else {
+      emit(DiagnosisFailure(
+        message: 'Error connecting to server',
+      ));
+    }
+
+    return null;
+
+  } 
+    catch (e) {
       emit(DiagnosisFailure(message: e.toString()));
       throw Exception('Error predicting: $e');
     }

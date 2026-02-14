@@ -9,10 +9,8 @@ class CustomDiagnosisResult extends StatelessWidget {
   final DiagnosisModel result;
   @override
   Widget build(BuildContext context) {
-    double h = MediaQuery.of(context).size.height;
     return Container(
       margin: EdgeInsets.only(left: 24, right: 24),
-      height: h * 0.37,
       decoration: const BoxDecoration(
         color: Colors.white,
         borderRadius: BorderRadius.all(Radius.circular(16)),
@@ -43,7 +41,7 @@ class CustomDiagnosisResult extends StatelessWidget {
           SizedBox(height: 16),
           Container(
             padding: EdgeInsets.all(17),
-            margin: EdgeInsets.symmetric(horizontal: 16),
+            margin: EdgeInsets.only(left: 16, right: 16, bottom: 16),
             decoration: BoxDecoration(
               borderRadius: BorderRadius.all(Radius.circular(10)),
               color: AppColors.findDoctorContainerColor,
