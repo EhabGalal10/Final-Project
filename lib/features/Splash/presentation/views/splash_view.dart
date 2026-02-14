@@ -1,6 +1,8 @@
-import 'package:final_project/features/Splash/presentation/functions/custom_navigationWith_Animation.dart';
+import 'package:final_project/features/Splash/presentation/functions/custom_navigationwith_animation.dart';
+import 'package:final_project/features/Splash/presentation/widgets/custom_brain_image.dart';
+import 'package:final_project/features/Splash/presentation/widgets/custom_mokhi_splash.dart';
+import 'package:final_project/features/Splash/presentation/widgets/description_splash.dart';
 import 'package:flutter/material.dart';
-import 'package:google_fonts/google_fonts.dart';
 
 class SplashView extends StatefulWidget {
   const SplashView({super.key});
@@ -17,24 +19,20 @@ class _SplashViewState extends State<SplashView>
   void initState() {
     super.initState();
 
-    // ===== Animation Controller =====
-    _controller = AnimationController(
-      vsync: this,
-      duration: const Duration(seconds: 3),
-    )..repeat();
-
-    // ===== الانتقال للصفحة الرئيسية بعد 5 ثواني =====
-    Future.delayed(const Duration(seconds: 5), () {
-      goToSignIn(context);
-    });
+_controller = AnimationController(
+  vsync: this,
+  duration: const Duration(seconds: 3),
+);
+_controller.forward().whenComplete(() {
+  if (!mounted) return;
+  goToSignIn(context);
+});
   }
-
   @override
   void dispose() {
     _controller.dispose();
     super.dispose();
   }
-
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -57,70 +55,21 @@ class _SplashViewState extends State<SplashView>
         child: Column(
           mainAxisAlignment: MainAxisAlignment.center,
           children: [
-            // ===== Animated Gradient Text =====
             AnimatedBuilder(
               animation: _controller,
               builder: (_, __) {
-                return ShaderMask(
-                  shaderCallback: (bounds) {
-                    return LinearGradient(
-                      begin: Alignment(-1 + _controller.value * 2, -1),
-                      end: Alignment(1 + _controller.value * 2, 1),
-                      colors: const [
-                        Color(0xff549de3),
-                        Color(0xffc8e4fe),
-                        Color.fromARGB(255, 152, 96, 189),
-                      ],
-                    ).createShader(bounds);
-                  },
-                  child: Text(
-                    "Mokhi",
-                    style: GoogleFonts.nunito(
-                      fontSize: 90,
-                      fontWeight: FontWeight.w900,
-                      letterSpacing: 1.5,
-                      color: Colors.white,
-                      shadows: const [
-                        Shadow(
-                          blurRadius: 5,
-                          color: Color(0xff549de3),
-                          offset: Offset(3, 5),
-                        ),
-                      ],
-                    ),
-                  ),
-                );
+                return CustomMokhiSplash(controller: _controller);
               },
             ),
             const SizedBox(height: 16),
-            const Text(
-              "AI-Powered Brain MRI Analysis",
-              style: TextStyle(fontSize: 24, color: Color(0xff4a78b8)),
-            ),
+            DescriptionSplash(),
             const SizedBox(height: 60),
             // ===== Image with gradient =====
-            ShaderMask(
-              shaderCallback: (Rect bounds) {
-                return const LinearGradient(
-                  colors: [
-                    Color.fromARGB(255, 152, 96, 189),
-                    Color(0xffc8e4fe),
-                    Color.fromARGB(255, 255, 255, 255),
-                    Color(0xff549de3),
-                  ],
-                  begin: Alignment.topRight,
-                  end: Alignment.bottomLeft,
-                ).createShader(bounds);
-              },
-              blendMode: BlendMode.modulate,
-              child: Opacity(
-                opacity: 0.9,
-                child: Image.asset('assets/images/9479213.png'),
-              ),
-            ),
+            CustomBrainImage(),
           ],
         ),
       ),
     );
   }
 }
+

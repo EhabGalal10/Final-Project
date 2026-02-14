@@ -24,10 +24,9 @@ class FormLogin extends StatelessWidget {
               child: CircularProgressIndicator(color: AppColors.primaryColor),
             ),
           );
-        } else {
-          Navigator.of(context, rootNavigator: true).pop(); // Close the dialog
         }
         if (state is LoginSuccess) {
+          Navigator.of(context, rootNavigator: true).pop();
           ScaffoldMessenger.of(context).showSnackBar(
             SnackBar(
               content: Text('Login Successful!'),
@@ -36,14 +35,18 @@ class FormLogin extends StatelessWidget {
           );
           // Navigate to the main app screen or dashboard
           Navigator.pushReplacementNamed(context, '/home');
-        } else if (state is LoginFailure) {
+        } 
+        if (state is LoginFailure) {
+          Navigator.of(context, rootNavigator: true).pop();
           ScaffoldMessenger.of(context).showSnackBar(
             SnackBar(
               content: Text(state.errorMessage),
               backgroundColor: Colors.red,
             ),
           );
-        } else if (state is LoginEmailNotVerified) {
+        } 
+        if (state is LoginEmailNotVerified) {
+          Navigator.of(context, rootNavigator: true).pop();
           ScaffoldMessenger.of(context).showSnackBar(
             const SnackBar(
               content: Text('Email not verified. Please verify your email.'),
