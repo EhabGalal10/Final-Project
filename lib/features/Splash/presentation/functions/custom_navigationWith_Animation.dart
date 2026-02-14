@@ -6,18 +6,18 @@ import 'package:flutter/material.dart';
 void goToSignIn(context) {
   Navigator.of(context).pushReplacement(
     PageRouteBuilder(
-      transitionDuration: const Duration(milliseconds: 700),
-      pageBuilder: (_, __, ___) {
-        if(FirebaseAuth.instance.currentUser != null&& FirebaseAuth.instance.currentUser!.emailVerified){
+          pageBuilder: (context, animation, secondaryAnimation) {
+            if(FirebaseAuth.instance.currentUser != null&& FirebaseAuth.instance.currentUser!.emailVerified){
           return const HomeView();
         }else{
           return const SignInView();
         }
-        
-      },
-      transitionsBuilder: (_, animation, __, child) {
-        return FadeTransition(opacity: animation, child: child);
-      },
-    ),
+          },
+              
+          transitionsBuilder: (context, animation, secondaryAnimation, child) {
+            return FadeTransition(opacity: animation, child: child);
+          },
+          transitionDuration: const Duration(milliseconds: 800), // مدة الـ fade
+        ),
   );
 }

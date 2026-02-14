@@ -2,7 +2,6 @@ import 'package:final_project/core/utils/app_strings.dart';
 import 'package:final_project/core/utils/app_text_styles.dart';
 import 'package:final_project/features/Auth/presentation/cubit/auth_cubit.dart';
 import 'package:final_project/features/Auth/presentation/widgets/form_signup.dart';
-import 'package:final_project/features/Auth/presentation/widgets/sub_logo_signin.dart';
 import 'package:final_project/features/Auth/presentation/widgets/sub_logo_signup.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';

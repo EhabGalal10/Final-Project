@@ -1,4 +1,4 @@
-import 'package:final_project/features/Auth/presentation/views/signin_view.dart';
+import 'package:final_project/features/Splash/presentation/functions/custom_navigationWith_Animation.dart';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 
@@ -25,16 +25,7 @@ class _SplashViewState extends State<SplashView>
 
     // ===== الانتقال للصفحة الرئيسية بعد 5 ثواني =====
     Future.delayed(const Duration(seconds: 5), () {
-      Navigator.of(context).pushReplacement(
-        PageRouteBuilder(
-          pageBuilder: (context, animation, secondaryAnimation) =>
-              const SignInView(),
-          transitionsBuilder: (context, animation, secondaryAnimation, child) {
-            return FadeTransition(opacity: animation, child: child);
-          },
-          transitionDuration: const Duration(milliseconds: 800), // مدة الـ fade
-        ),
-      );
+      goToSignIn(context);
     });
   }
 
