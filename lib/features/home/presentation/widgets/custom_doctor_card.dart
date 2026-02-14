@@ -17,17 +17,15 @@ class CustomDoctorCard extends StatelessWidget {
           begin: Alignment.topLeft,
           end: Alignment.bottomRight,
           colors: [
-            Color.fromARGB(255, 98, 154, 207),
-            Color(0xffc1e1fd),
-            Color.fromARGB(255, 255, 255, 255),
+            Color(0xffE8F1FD), // أزرق فاتح جدًا
+            Colors.white,
           ],
-          stops: [0, 0.8, 1.0],
         ),
         boxShadow: [
           BoxShadow(
-            color: Colors.grey.withOpacity(0.3),
-            blurRadius: 6,
-            offset: const Offset(0, 7),
+            color: Colors.black.withOpacity(0.08),
+            blurRadius: 10,
+            offset: const Offset(0, 4),
           ),
         ],
       ),
@@ -35,7 +33,7 @@ class CustomDoctorCard extends StatelessWidget {
         contentPadding: const EdgeInsets.all(16),
         leading: CircleAvatar(
           radius: 28,
-          backgroundColor: Colors.blue.shade100,
+          backgroundColor: Color(0xffE0EDFF),
           child: const Icon(
             Icons.person,
             color: AppColors.primaryColor,
@@ -44,7 +42,11 @@ class CustomDoctorCard extends StatelessWidget {
         ),
         title: Text(
           doctor.name!,
-          style: const TextStyle(fontSize: 18, fontWeight: FontWeight.bold),
+          style: const TextStyle(
+            fontSize: 17,
+            fontWeight: FontWeight.w600,
+            color: Color(0xff111827), // أسود ناعم
+          ),
         ),
         subtitle: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
@@ -54,13 +56,16 @@ class CustomDoctorCard extends StatelessWidget {
               children: [
                 const Icon(Icons.location_on, size: 16, color: Colors.grey),
                 const SizedBox(width: 4),
-                Text(doctor.address!),
+                Text(
+                  doctor.address!,
+                  style: const TextStyle(color: Color(0xff6B7280)),
+                ),
               ],
             ),
             const SizedBox(height: 4),
             Row(
               children: [
-                const Icon(Icons.phone, size: 16, color: Colors.grey),
+                const Icon(Icons.call, color: Color(0xff2563EB), size: 16),
                 const SizedBox(width: 4),
                 Text(doctor.phone!),
               ],
