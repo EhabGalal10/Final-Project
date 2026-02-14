@@ -76,7 +76,7 @@ class _QuickActionsState extends State<QuickActions> {
             children: [
               Text(
                 AppStrings.quickActions,
-                style: AppTextStyles.inter700style30.copyWith(fontSize: 18),
+                style: AppTextStyles.inter700style20.copyWith(fontSize: 18),
               ),
               SizedBox(height: 13),
               Row(

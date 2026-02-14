@@ -1,6 +1,6 @@
-import 'package:final_project/features/Splash%20screen/presentation/animation/opacity_loading_circle_animation.dart';
-import 'package:final_project/features/Splash%20screen/presentation/animation/rotation_loading_circle_animation.dart';
-import 'package:final_project/features/Splash%20screen/presentation/animation/scale_loading_circle_animation.dart';
+import 'package:final_project/features/Splash/presentation/animation/opacity_loading_circle_animation.dart';
+import 'package:final_project/features/Splash/presentation/animation/rotation_loading_circle_animation.dart';
+import 'package:final_project/features/Splash/presentation/animation/scale_loading_circle_animation.dart';
 import 'package:flutter/material.dart';
 
 class LoadingCircle extends StatelessWidget {

@@ -1,6 +1,6 @@
 import 'package:final_project/features/Auth/presentation/views/signin_view.dart';
 import 'package:final_project/features/Auth/presentation/views/signup_view.dart';
-import 'package:final_project/features/Splash%20screen/presentation/views/splash_view.dart';
+import 'package:final_project/features/Splash/presentation/views/splash_view.dart';
 import 'package:final_project/features/diagnosis/presentation/views/diagnosis_view.dart';
 import 'package:final_project/features/history/presentation/views/history_view.dart';
 import 'package:final_project/features/home/presentation/views/doctors_view.dart';
