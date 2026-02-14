@@ -10,6 +10,7 @@ class DescriptionSplash extends StatelessWidget {
     return const Text(
       "AI-Powered Brain MRI Analysis",
       style: TextStyle(fontSize: 24, color: Color(0xff4a78b8)),
+      textAlign: TextAlign.center,
     );
   }
 }

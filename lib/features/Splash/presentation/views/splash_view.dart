@@ -54,6 +54,7 @@ _controller.forward().whenComplete(() {
         ),
         child: Column(
           mainAxisAlignment: MainAxisAlignment.center,
+          crossAxisAlignment: CrossAxisAlignment.stretch,
           children: [
             AnimatedBuilder(
               animation: _controller,

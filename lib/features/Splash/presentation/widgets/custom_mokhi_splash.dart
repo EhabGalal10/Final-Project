@@ -25,6 +25,7 @@ class CustomMokhiSplash extends StatelessWidget {
       },
       child: Text(
         "Mokhi",
+        textAlign: TextAlign.center,
         style: GoogleFonts.nunito(
           fontSize: 90,
           fontWeight: FontWeight.w900,

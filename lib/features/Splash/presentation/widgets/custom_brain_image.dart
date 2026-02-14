@@ -1,12 +1,12 @@
 import 'package:flutter/material.dart';
 
 class CustomBrainImage extends StatelessWidget {
-  const CustomBrainImage({
-    super.key,
-  });
+  const CustomBrainImage({super.key});
 
   @override
   Widget build(BuildContext context) {
+    double h = MediaQuery.of(context).size.height;
+    double w = MediaQuery.of(context).size.width;
     return ShaderMask(
       shaderCallback: (Rect bounds) {
         return const LinearGradient(
@@ -23,7 +23,11 @@ class CustomBrainImage extends StatelessWidget {
       blendMode: BlendMode.modulate,
       child: Opacity(
         opacity: 0.9,
-        child: Image.asset('assets/images/9479213.png'),
+        child: Image.asset(
+          'assets/images/9479213.png',
+          height: h * 0.6,
+          width: w * 0.6,
+        ),
       ),
     );
   }
