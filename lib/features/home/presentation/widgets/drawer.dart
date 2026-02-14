@@ -6,27 +6,26 @@ class CustomDrawer extends StatelessWidget {
   const CustomDrawer({super.key});
   @override
   Widget build(BuildContext context) {
-    return 
-         Drawer(
-          child: Column(
-            children: [
-              CustomTopDrawer(),
-              const SizedBox(height: 20),
-              ListTile(
-                leading: const Icon(Icons.home_outlined),
-                title: const Text('Home', style: TextStyle(fontSize: 16)),
-                onTap: () {
-                  Navigator.pop(context);
-                },
-              ),
-
-              const Spacer(),
-
-              // ===== Logout =====
-              LogOutDrawer(),
-            ],
+    return Drawer(
+      backgroundColor: Colors.white,
+      child: Column(
+        children: [
+          CustomTopDrawer(),
+          const SizedBox(height: 20),
+          ListTile(
+            leading: const Icon(Icons.home_outlined),
+            title: const Text('Home', style: TextStyle(fontSize: 16)),
+            onTap: () {
+              Navigator.pop(context);
+            },
           ),
-        );
-     
+
+          const Spacer(),
+
+          // ===== Logout =====
+          LogOutDrawer(),
+        ],
+      ),
+    );
   }
 }

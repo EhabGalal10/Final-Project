@@ -27,7 +27,7 @@ class CustomDiagnosisResult extends StatelessWidget {
             padding: const EdgeInsets.only(left: 16.0, top: 16.0),
             child: Text(
               AppStrings.diagnosisResults,
-              style: AppTextStyles.inter800style40shadow.copyWith(fontSize: 18),
+              style: AppTextStyles.inter700style20.copyWith(fontSize: 18),
             ),
           ),
           SizedBox(height: 6),
@@ -57,12 +57,12 @@ class CustomDiagnosisResult extends StatelessWidget {
                       radius: 8,
                       backgroundColor: AppColors.primaryColor,
                     ),
-                    SizedBox(width: 12),
+                    SizedBox(width: 8),
                     Text(
                       'Primary Diagnosis',
                       style: AppTextStyles.interMediumstyle16.copyWith(
                         color: AppColors.primaryColor,
-                        fontSize: 14,
+                        fontSize: 16,
                       ),
                     ),
                     Spacer(),
@@ -85,9 +85,7 @@ class CustomDiagnosisResult extends StatelessWidget {
                 SizedBox(height: 12),
                 Text(
                   result.diagnosis,
-                  style: AppTextStyles.inter800style40shadow.copyWith(
-                    fontSize: 20,
-                  ),
+                  style: AppTextStyles.inter700style20.copyWith(fontSize: 20),
                 ),
                 SizedBox(height: 8),
                 Text(

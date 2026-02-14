@@ -26,7 +26,7 @@ class CustomImportantNotes extends StatelessWidget {
             padding: const EdgeInsets.only(left: 16.0, top: 16.0),
             child: Text(
               AppStrings.importantNotice,
-              style: AppTextStyles.inter800style40shadow.copyWith(fontSize: 18),
+              style: AppTextStyles.inter700style20.copyWith(fontSize: 18),
             ),
           ),
 
@@ -46,22 +46,19 @@ class CustomImportantNotes extends StatelessWidget {
                 Row(
                   children: [
                     Icon(Icons.info, color: AppColors.primaryColor, size: 18),
-                    SizedBox(width: 12),
+                    SizedBox(width: 8),
                     Text(
                       AppStrings.importantNotice,
                       style: AppTextStyles.interMediumstyle16.copyWith(
                         color: AppColors.primaryColor,
-                        fontSize: 14,
+                        fontSize: 16,
                       ),
                     ),
                   ],
                 ),
                 Text(
                   'This AI diagnosis is for screening purposes only. Please consult with a qualified radiologist or healthcare professional for final diagnosis and treatment recommendations.',
-                  style: AppTextStyles.inter400style16.copyWith(
-                    fontSize: 14,
-                    color: Color(0xff1D4ED8),
-                  ),
+                  style: AppTextStyles.inter400style16.copyWith(fontSize: 14),
                 ),
               ],
             ),

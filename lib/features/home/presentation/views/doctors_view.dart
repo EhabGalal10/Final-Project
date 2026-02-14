@@ -9,11 +9,11 @@ class DoctorsView extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      backgroundColor: Color(0xffF9FAFB),
       appBar: AppBar(
-        title: Text(
-          "Doctors",
-          style: AppTextStyles.inter800style40shadow.copyWith(fontSize: 20),
-        ),
+        backgroundColor: Colors.white,
+        forceMaterialTransparency: true,
+        title: Text("Doctors", style: AppTextStyles.inter700style20),
         centerTitle: true,
       ),
       body: ListView.builder(
