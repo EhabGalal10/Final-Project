@@ -27,13 +27,7 @@ class FormLogin extends StatelessWidget {
         }
         if (state is LoginSuccess) {
           Navigator.of(context, rootNavigator: true).pop();
-          ScaffoldMessenger.of(context).showSnackBar(
-            SnackBar(
-              content: Text('Login Successful!'),
-              backgroundColor: Colors.green,
-            ),
-          );
-          // Navigate to the main app screen or dashboard
+          // Navigate to the main app screen 
           Navigator.pushReplacementNamed(context, '/home');
         } 
         if (state is LoginFailure) {

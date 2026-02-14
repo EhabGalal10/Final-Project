@@ -87,8 +87,8 @@ class DiagnosisHistoryCard extends StatelessWidget {
   }
 
   Color getConfidenceColor(double value) {
-    if (value >= 80) return Colors.green;
-    if (value >= 50) return Colors.orange;
+    if (value >= 0.8) return Colors.green;
+    if (value >= 0.5) return Colors.orange;
     return Colors.red;
   }
 }
