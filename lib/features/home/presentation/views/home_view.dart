@@ -12,6 +12,8 @@ import 'package:final_project/features/home/presentation/widgets/sub_logo_home.d
 import 'package:final_project/features/home/presentation/widgets/upload_image.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:toasty_box/toast_enums.dart';
+import 'package:toasty_box/toast_service.dart';
 
 class HomeView extends StatelessWidget {
   const HomeView({super.key});
@@ -46,21 +48,26 @@ class HomeView extends StatelessWidget {
                 ),
               );
             } else if (state is DiagnosisSuccess) {
-              ScaffoldMessenger.of(context).showSnackBar(
-                SnackBar(
-                  content: Text('Diagnosis done successfully'),
-                  backgroundColor: Colors.green,
-                  duration: Duration(seconds: 1),
-                ),
+              ToastService.showToast(
+                context,
+                isClosable: true,
+                backgroundColor: Colors.green.shade500,
+                shadowColor: Colors.green.shade200,
+                length: ToastLength.medium,
+                expandedHeight: 70,
+                message: "Completed Successfully 😊",
+                messageStyle: TextStyle(fontSize: 18, color: Colors.white),
+                leading: const Icon(Icons.check_circle, color: Colors.white),
+                slideCurve: Curves.elasticInOut,
+                positionCurve: Curves.bounceOut,
+                dismissDirection: DismissDirection.horizontal,
               );
             }
           },
           builder: (context, state) {
             if (state is DiagnosisLoading) {
               return Center(
-                child: CircularProgressIndicator(
-                  color: AppColors.primaryColor,
-                ),
+                child: CircularProgressIndicator(color: AppColors.primaryColor),
               );
             }
             return ListView(

@@ -7,7 +7,8 @@ class CustomQuickActions extends StatelessWidget {
   const CustomQuickActions({
     super.key,
     required this.title,
-    required this.image, this.onTap,
+    required this.image,
+    this.onTap,
   });
   final String title;
   final String image;
@@ -20,7 +21,7 @@ class CustomQuickActions extends StatelessWidget {
       onTap: onTap,
       child: Container(
         width: w * 0.35,
-        height: h * 0.101,
+        height: h * 0.12,
         decoration: BoxDecoration(
           color: AppColors.findDoctorContainerColor,
           borderRadius: BorderRadius.circular(12),

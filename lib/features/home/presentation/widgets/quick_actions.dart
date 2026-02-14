@@ -24,17 +24,14 @@ class _QuickActionsState extends State<QuickActions> {
       listener: (context, state) {
         if (state is DiagnosisFailure) {
           ScaffoldMessenger.of(context).showSnackBar(
-            SnackBar(
-              content: Text(state.message),
-              backgroundColor: Colors.red,
-            ),
+            SnackBar(content: Text(state.message), backgroundColor: Colors.red),
           );
         }
       },
       builder: (context, state) {
         return Container(
-          height: h * 0.21,
-          padding: EdgeInsets.all(24),
+          height: h * 0.23,
+          padding: EdgeInsets.only(top: 20, left: 20, right: 20, bottom: 5),
           margin: EdgeInsets.all(24),
           decoration: BoxDecoration(
             color: Colors.white,
@@ -62,7 +59,7 @@ class _QuickActionsState extends State<QuickActions> {
                   CustomQuickActions(
                     title: AppStrings.viewHistory,
                     image: Assets.assetsImagesHistory,
-                    onTap: () async{
+                    onTap: () async {
                       Navigator.pushNamed(context, '/historyView');
                     },
                   ),
