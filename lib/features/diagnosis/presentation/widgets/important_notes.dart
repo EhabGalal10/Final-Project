@@ -26,7 +26,7 @@ class CustomImportantNotes extends StatelessWidget {
             padding: const EdgeInsets.only(left: 16.0, top: 16.0),
             child: Text(
               AppStrings.importantNotice,
-              style: AppTextStyles.inter700style30.copyWith(fontSize: 18),
+              style: AppTextStyles.inter800style40.copyWith(fontSize: 18),
             ),
           ),
 

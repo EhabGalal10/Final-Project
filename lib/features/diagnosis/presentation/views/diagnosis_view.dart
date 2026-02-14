@@ -14,7 +14,7 @@ class DiagnosisView extends StatelessWidget {
   Widget build(BuildContext context) {
     Map<String, dynamic> modelResult =
         ModalRoute.of(context)!.settings.arguments as Map<String, dynamic>;
-      DiagnosisModel result =  modelResult['diagnosis'];
+    DiagnosisModel result = modelResult['diagnosis'];
     return Scaffold(
       floatingActionButton: FloatingActionButton(
         onPressed: () {
@@ -31,7 +31,7 @@ class DiagnosisView extends StatelessWidget {
           children: [
             Text(
               AppStrings.mriDiagnosis,
-              style: AppTextStyles.inter700style30.copyWith(fontSize: 20),
+              style: AppTextStyles.inter800style40.copyWith(fontSize: 20),
             ),
             Text(
               AppStrings.aiPowered,
@@ -43,7 +43,7 @@ class DiagnosisView extends StatelessWidget {
       body: ListView(
         physics: BouncingScrollPhysics(),
         children: [
-          CustomDisplayImage(image:result.image, name: result.imagename),
+          CustomDisplayImage(image: result.image, name: result.imagename),
           CustomDiagnosisResult(result: result),
           SizedBox(height: 24),
           CustomImportantNotes(),
@@ -54,4 +54,3 @@ class DiagnosisView extends StatelessWidget {
     );
   }
 }
-

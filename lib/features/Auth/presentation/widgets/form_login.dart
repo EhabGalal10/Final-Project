@@ -4,7 +4,6 @@ import 'package:final_project/features/Auth/presentation/cubit/auth_cubit.dart';
 import 'package:final_project/features/Auth/presentation/cubit/auth_state.dart';
 import 'package:final_project/features/Auth/presentation/widgets/custom_button.dart';
 import 'package:final_project/features/Auth/presentation/widgets/custom_text_field.dart';
-import 'package:final_project/features/Auth/presentation/widgets/label_form.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
@@ -65,8 +64,6 @@ class FormLogin extends StatelessWidget {
             padding: const EdgeInsets.symmetric(horizontal: 24.0),
             child: Column(
               children: [
-                LabelForm(label: AppStrings.email),
-                SizedBox(height: 8),
                 CustomTextField(
                   hintText: AppStrings.enterYourEmail,
                   icon: Icons.email,
@@ -83,7 +80,7 @@ class FormLogin extends StatelessWidget {
                   },
                 ),
                 SizedBox(height: 16),
-                LabelForm(label: AppStrings.password),
+
                 SizedBox(height: 8),
                 CustomTextField(
                   hintText: AppStrings.enterYourPassword,

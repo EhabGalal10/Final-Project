@@ -34,7 +34,7 @@ class UploadImage extends StatelessWidget {
         children: [
           Text(
             'Upload Image Screen',
-            style: AppTextStyles.inter700style30.copyWith(fontSize: 18),
+            style: AppTextStyles.inter800style40.copyWith(fontSize: 18),
           ),
           SizedBox(height: 16),
           GestureDetector(

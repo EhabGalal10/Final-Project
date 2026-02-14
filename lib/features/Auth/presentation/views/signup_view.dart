@@ -22,7 +22,12 @@ class SignupView extends StatelessWidget {
             gradient: LinearGradient(
               begin: Alignment.topCenter,
               end: Alignment.bottomCenter,
-              colors: [Color(0xffEFF6FF), Color(0xffFFFFFF)],
+              colors: [
+                Color(0xffc8e4fe),
+                Color(0xffc1e1fd),
+                Color.fromARGB(255, 255, 255, 255),
+              ],
+              stops: [0, 0.4, 1.0],
             ),
           ),
           child: SingleChildScrollView(
@@ -30,10 +35,17 @@ class SignupView extends StatelessWidget {
               children: [
                 SizedBox(height: h * 0.06),
                 SubLogoSignUp(),
-                Text(
-                  AppStrings.createAccount,
-                  style: AppTextStyles.inter700style30,
-                  textAlign: TextAlign.center,
+                ShaderMask(
+                  shaderCallback: (bounds) {
+                    return LinearGradient(
+                      colors: [Color(0xff549de3), Color(0xffc8e4fe)],
+                    ).createShader(bounds);
+                  },
+                  child: Text(
+                    AppStrings.createAccount,
+                    style: AppTextStyles.inter700style30,
+                    textAlign: TextAlign.center,
+                  ),
                 ),
                 Text(
                   AppStrings.joinMokhi,
