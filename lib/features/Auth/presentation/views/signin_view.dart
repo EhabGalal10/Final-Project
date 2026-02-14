@@ -25,25 +25,48 @@ class SignInView extends StatelessWidget {
               end: Alignment.bottomLeft,
               colors: [
                 Color(0xffc8e4fe),
-                Color(0xffc1e1fd),
                 Color.fromARGB(255, 255, 255, 255),
+                Color.fromARGB(255, 255, 255, 255),
+                Color(0xffc1e1fd),
               ],
-              stops: [0, 0.4, 1.0],
+              stops: [0.1, 0.22, 0.75, 1.0],
             ),
           ),
           child: CustomScrollView(
             slivers: [
               SliverToBoxAdapter(child: SizedBox(height: h * 0.12)),
-              SliverToBoxAdapter(child: SubLogoSignin()),
+              SliverToBoxAdapter(
+                child: ShaderMask(
+                  shaderCallback: (Rect bounds) {
+                    return LinearGradient(
+                      begin: Alignment.topRight,
+                      end: Alignment.bottomLeft,
+                      colors: [
+                        Color.fromARGB(255, 5, 2, 172),
+                        Color.fromARGB(255, 85, 165, 241),
+                      ],
+                      stops: [0, 0.7],
+                    ).createShader(bounds);
+                  },
+                  blendMode: BlendMode.srcIn,
+                  child: SubLogoSignin(),
+                ),
+              ),
               SliverToBoxAdapter(child: SizedBox(height: 24)),
               SliverToBoxAdapter(
                 child: ShaderMask(
-                  shaderCallback: (bounds) {
+                  shaderCallback: (Rect bounds) {
                     return LinearGradient(
-                      colors: [Color(0xff549de3), Color(0xffc8e4fe)],
+                      begin: Alignment.topLeft,
+                      end: Alignment.bottomRight,
+                      colors: [
+                        Color.fromARGB(255, 5, 2, 172),
+                        Color.fromARGB(255, 85, 165, 241),
+                      ],
+                      stops: [0, 0.9],
                     ).createShader(bounds);
                   },
-
+                  blendMode: BlendMode.srcIn,
                   child: Text(
                     AppStrings.welcomeBack,
                     style: AppTextStyles.inter800style40shadow,

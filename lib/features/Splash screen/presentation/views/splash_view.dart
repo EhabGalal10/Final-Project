@@ -61,7 +61,7 @@ class _SplashViewState extends State<SplashView>
               Color.fromARGB(255, 255, 255, 255),
               Color(0xffc1e1fd),
             ],
-            stops: [0.1, 0.2, 0.75, 1.0],
+            stops: [0.1, 0.25, 0.75, 1.0],
           ),
         ),
         child: Column(

@@ -18,15 +18,15 @@ abstract class AppTextStyles {
   static final TextStyle inter800style40shadow = TextStyle(
     fontSize: 40,
     fontWeight: FontWeight.w800,
-    color: AppColors.primaryColor,
+    // color: AppColors.primaryColor,
     fontFamily: 'Inter',
-    shadows: [
-      Shadow(
-        color: Color(0xff36736c),
-        blurRadius: 1,
-        offset: const Offset(0, 2),
-      ),
-    ],
+    // shadows: [
+    //   Shadow(
+    //     color: Colors.grey.shade300,
+    //     blurRadius: 1,
+    //     offset: const Offset(0, 2),
+    //   ),
+    // ],
   );
   static final TextStyle inter400style16 = TextStyle(
     fontSize: 16,
@@ -47,15 +47,8 @@ abstract class AppTextStyles {
   static final TextStyle inter700style30shadow = TextStyle(
     fontSize: 30,
     fontWeight: FontWeight.w700,
-    color: AppColors.primaryColor,
+    // color: AppColors.primaryColor,
     fontFamily: 'Inter',
-    shadows: [
-      Shadow(
-        color: Color(0xff36736c),
-        blurRadius: 1,
-        offset: const Offset(0, 1),
-      ),
-    ],
   );
   static final TextStyle inter700style20 = TextStyle(
     fontSize: 20,
