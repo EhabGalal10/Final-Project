@@ -14,9 +14,21 @@ class CustomTopDrawer extends StatelessWidget {
       builder: (context, snapshot) {
         if (snapshot.connectionState == ConnectionState.waiting) {
           return Container(
-            height: h * 0.2,
+            height: h * 0.25,
             width: double.infinity,
-            color: Colors.transparent,
+            decoration: const BoxDecoration(
+              gradient: LinearGradient(
+                colors: [
+                  Color.fromARGB(255, 87, 138, 227),
+                  Color(0xffc1e1fd),
+                  Color(0xffc8e4fe),
+
+                  Color.fromARGB(255, 255, 255, 255),
+                ],
+                begin: Alignment.topLeft,
+                end: Alignment.bottomRight,
+              ),
+            ),
             child: Center(
               child: CircularProgressIndicator(color: AppColors.primaryColor),
             ),
@@ -25,9 +37,21 @@ class CustomTopDrawer extends StatelessWidget {
           return Center(child: Text('Error: ${snapshot.error}'));
         } else if (!snapshot.hasData) {
           return Container(
-            height: h * 0.2,
+            height: h * 0.25,
             width: double.infinity,
-            color: Colors.transparent,
+            decoration: const BoxDecoration(
+              gradient: LinearGradient(
+                colors: [
+                  Color.fromARGB(255, 87, 138, 227),
+                  Color(0xffc1e1fd),
+                  Color(0xffc8e4fe),
+
+                  Color.fromARGB(255, 255, 255, 255),
+                ],
+                begin: Alignment.topLeft,
+                end: Alignment.bottomRight,
+              ),
+            ),
             child: Center(
               child: CircularProgressIndicator(color: AppColors.primaryColor),
             ),
@@ -53,7 +77,9 @@ class CustomTopDrawer extends StatelessWidget {
             children: [
               CircleAvatar(
                 radius: 45,
-                backgroundImage: NetworkImage('https://i.pravatar.cc/300'),
+                backgroundImage: const AssetImage(
+                  'assets/images/doctor_avatar.png',
+                ),
                 backgroundColor: Colors.white,
               ),
               const SizedBox(height: 12),
