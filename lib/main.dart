@@ -34,7 +34,7 @@ class Mokhi extends StatelessWidget {
         BlocProvider(create: (context) => HistoryCubit()),
       ],
       child: MaterialApp(
-        title: 'Mokhi App',
+        title: 'Mokhi',
         home: SplashView(),
         debugShowCheckedModeBanner: false,
         routes: {

@@ -1,5 +1,6 @@
 import 'dart:io';
 import 'package:final_project/core/functions/image_picker.dart';
+import 'package:final_project/core/functions/show_toast.dart';
 import 'package:final_project/core/utils/app_colors.dart';
 import 'package:final_project/core/utils/app_strings.dart';
 import 'package:final_project/core/utils/app_text_styles.dart';
@@ -12,8 +13,7 @@ import 'package:final_project/features/home/presentation/widgets/sub_logo_home.d
 import 'package:final_project/features/home/presentation/widgets/upload_image.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:toasty_box/toast_enums.dart';
-import 'package:toasty_box/toast_service.dart';
+
 
 class HomeView extends StatelessWidget {
   const HomeView({super.key});
@@ -40,27 +40,19 @@ class HomeView extends StatelessWidget {
           listener: (context, state) {
             if (state is DiagnosisFailure) {
               Navigator.pop(context);
-              ScaffoldMessenger.of(context).showSnackBar(
-                SnackBar(
-                  content: Text(state.message),
-                  backgroundColor: Colors.red,
-                  duration: Duration(seconds: 1),
-                ),
+              showToast(
+                context,
+                message: "${state.message}",
+                backgroundColor: Colors.red.shade500,
+                shadowColor: Colors.red.shade200,
+                icon: Icons.error,
               );
             } else if (state is DiagnosisSuccess) {
-              ToastService.showToast(
+              showToast(
                 context,
-                isClosable: true,
+                message: "Completed Successfully 😊",
                 backgroundColor: Colors.green.shade500,
                 shadowColor: Colors.green.shade200,
-                length: ToastLength.medium,
-                expandedHeight: 70,
-                message: "Completed Successfully 😊",
-                messageStyle: TextStyle(fontSize: 18, color: Colors.white),
-                leading: const Icon(Icons.check_circle, color: Colors.white),
-                slideCurve: Curves.elasticInOut,
-                positionCurve: Curves.bounceOut,
-                dismissDirection: DismissDirection.horizontal,
               );
             }
           },

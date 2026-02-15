@@ -34,7 +34,7 @@ class AuthCubit extends Cubit<AuthState> {
       if (e.code == 'weak-password') {
         emit(SignUpFailure('The password provided is too weak.'));
       } else if (e.code == 'email-already-in-use') {
-        emit(SignUpFailure('The account already exists for that email.'));
+        emit(SignUpFailure('The Account already exists'));
       }
     } catch (e) {
       emit(SignUpFailure(e.toString()));

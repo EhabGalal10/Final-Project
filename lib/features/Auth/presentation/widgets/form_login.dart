@@ -1,3 +1,4 @@
+import 'package:final_project/core/functions/show_toast.dart';
 import 'package:final_project/core/utils/app_colors.dart';
 import 'package:final_project/core/utils/app_strings.dart';
 import 'package:final_project/features/Auth/presentation/cubit/auth_cubit.dart';
@@ -32,21 +33,23 @@ class FormLogin extends StatelessWidget {
         } 
         if (state is LoginFailure) {
           Navigator.of(context, rootNavigator: true).pop();
-          ScaffoldMessenger.of(context).showSnackBar(
-            SnackBar(
-              content: Text(state.errorMessage),
-              backgroundColor: Colors.red,
-            ),
-          );
+          showToast(
+                context,
+                message: state.errorMessage,
+                backgroundColor: Colors.red.shade500,
+                shadowColor: Colors.red.shade200,
+                icon: Icons.error,
+              );
         } 
         if (state is LoginEmailNotVerified) {
           Navigator.of(context, rootNavigator: true).pop();
-          ScaffoldMessenger.of(context).showSnackBar(
-            const SnackBar(
-              content: Text('Email not verified. Please verify your email.'),
-              backgroundColor: Colors.orange,
-            ),
-          );
+          showToast(
+                context,
+                message: "Email not verified. Please verify your email.",
+                backgroundColor: Colors.orange.shade500,
+                shadowColor: Colors.orange.shade200,
+                icon: Icons.warning_rounded,
+              );
         }
       },
       builder: (context, state) {

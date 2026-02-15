@@ -19,20 +19,22 @@ class _SplashViewState extends State<SplashView>
   void initState() {
     super.initState();
 
-_controller = AnimationController(
-  vsync: this,
-  duration: const Duration(seconds: 3),
-);
-_controller.forward().whenComplete(() {
-  if (!mounted) return;
-  goToSignIn(context);
-});
+    _controller = AnimationController(
+      vsync: this,
+      duration: const Duration(seconds: 3),
+    );
+    _controller.forward().whenComplete(() {
+      if (!mounted) return;
+      goToSignIn(context);
+    });
   }
+
   @override
   void dispose() {
     _controller.dispose();
     super.dispose();
   }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -64,7 +66,6 @@ _controller.forward().whenComplete(() {
             ),
             const SizedBox(height: 16),
             DescriptionSplash(),
-            const SizedBox(height: 60),
             // ===== Image with gradient =====
             CustomBrainImage(),
           ],
@@ -73,4 +74,3 @@ _controller.forward().whenComplete(() {
     );
   }
 }
-

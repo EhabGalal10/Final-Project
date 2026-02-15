@@ -1,3 +1,4 @@
+import 'package:final_project/core/functions/show_toast.dart';
 import 'package:final_project/core/utils/app_images.dart';
 import 'package:final_project/core/utils/app_strings.dart';
 import 'package:final_project/core/utils/app_text_styles.dart';
@@ -23,9 +24,13 @@ class _QuickActionsState extends State<QuickActions> {
     return BlocConsumer<HomeCubit, HomeState>(
       listener: (context, state) {
         if (state is DiagnosisFailure) {
-          ScaffoldMessenger.of(context).showSnackBar(
-            SnackBar(content: Text(state.message), backgroundColor: Colors.red),
-          );
+          showToast(
+                context,
+                message: "${state.message}",
+                backgroundColor: Colors.red.shade500,
+                shadowColor: Colors.red.shade200,
+                icon: Icons.error,
+              );
         }
       },
       builder: (context, state) {
