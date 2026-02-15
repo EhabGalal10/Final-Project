@@ -30,6 +30,8 @@ environment:
 dependencies:
   cloud_firestore: ^6.1.2
   cupertino_icons: ^1.0.8
+  dartx: ^1.2.0
+  dartz: ^0.10.1
   dio: ^5.9.1
   firebase_auth: ^6.1.4
   firebase_core: ^4.4.0

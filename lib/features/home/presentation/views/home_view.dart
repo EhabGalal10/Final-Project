@@ -3,6 +3,7 @@ import 'package:final_project/core/utils/app_colors.dart';
 import 'package:final_project/core/utils/app_strings.dart';
 import 'package:final_project/core/utils/app_text_styles.dart';
 import 'package:final_project/core/widgets/no_intenet_view.dart';
+import 'package:final_project/features/history/presentation/cubits/history_cubit/history_cubit.dart';
 import 'package:final_project/features/home/presentation/cubits/home_cubit/home_cubit.dart';
 import 'package:final_project/features/home/presentation/cubits/home_cubit/home_state.dart';
 import 'package:final_project/features/home/presentation/widgets/custom_home_body.dart';
@@ -45,39 +46,42 @@ class HomeView extends StatelessWidget {
           centerTitle: true,
           actions: [SubLogoHome()],
         ),
-        body: Builder(
-          builder: (context) => BlocConsumer<HomeCubit, HomeState>(
-            listener: (context, state) {
-              if (state is DiagnosisFailure) {
-                Navigator.pop(context);
-                showToast(
-                  context,
-                  message: state.message,
-                  backgroundColor: Colors.red.shade500,
-                  shadowColor: Colors.red.shade200,
-                  icon: Icons.error,
-                );
-              } else if (state is DiagnosisSuccess) {
-                showToast(
-                  context,
-                  message: "Completed Successfully 😊",
-                  backgroundColor: Colors.green.shade500,
-                  shadowColor: Colors.green.shade200,
-                );
-              }
-            },
-            builder: (context, state) {
-              if (state is DiagnosisLoading) {
-                return Center(
-                  child: CircularProgressIndicator(
-                    color: AppColors.primaryColor,
-                  ),
-                );
-              }
-
-              return CustomHomeBody();
-            },
-          ),
+        body: BlocConsumer<HomeCubit, HomeState>(
+          listener: (context, state) {
+            if (state is DiagnosisFailure) {
+              showToast(
+                context,
+                message: state.message,
+                backgroundColor: Colors.red.shade500,
+                shadowColor: Colors.red.shade200,
+                icon: Icons.error,
+              );
+            } else if (state is DiagnosisSuccess) {
+              context.read<HistoryCubit>().addToHistory(state.diagnosisModel);
+              Navigator.pushNamed(
+                context,
+                '/diagnosisView',
+                arguments: {'diagnosis': state.diagnosisModel},
+              );
+              showToast(
+                context,
+                message: "Completed Successfully 😊",
+                backgroundColor: Colors.green.shade500,
+                shadowColor: Colors.green.shade200,
+              );
+            }
+          },
+          builder: (context, state) {
+            if (state is DiagnosisLoading) {
+              return Center(
+                child: CircularProgressIndicator(
+                  color: AppColors.primaryColor,
+                ),
+              );
+            }
+        
+            return CustomHomeBody();
+          },
         ),
       ),
     );

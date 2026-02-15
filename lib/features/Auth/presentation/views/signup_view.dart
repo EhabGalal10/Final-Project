@@ -101,22 +101,3 @@ class SignupView extends StatelessWidget {
     );
   }
 }
-//  Scaffold(
-//       body: OfflineBuilder(
-//         connectivityBuilder:
-//             (
-//               BuildContext context,
-//               List<ConnectivityResult> connectivity,
-//               Widget child,
-//             ) {
-//               final bool connected = !connectivity.contains(
-//                 ConnectivityResult.none,
-//               );
-
-//               return connected
-//                   ? child
-//                   : const Center(child: NoInternetView());
-//             },
-//         child: SplashBody(controller: _controller),
-//       ),
-//     );

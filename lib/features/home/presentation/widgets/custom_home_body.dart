@@ -22,14 +22,9 @@ class CustomHomeBody extends StatelessWidget {
             String? imagePath = await pickImageFromGallery();
             if (imagePath != null) {
               File image = File(imagePath);
-              DiagnosisModel? diagnosisModel = await context
+              await context
                   .read<HomeCubit>()
-                  .getPrediction(image, context);
-              Navigator.pushNamed(
-                context,
-                '/diagnosisView',
-                arguments: {'diagnosis': diagnosisModel},
-              );
+                  .getPrediction(image);
             }
           },
           onlongpress: () async {
@@ -38,7 +33,7 @@ class CustomHomeBody extends StatelessWidget {
               File image = File(imagePath);
               DiagnosisModel? diagnosisModel = await context
                   .read<HomeCubit>()
-                  .getPrediction(image, context);
+                  .getPrediction(image);
               Navigator.pushNamed(
                 context,
                 '/diagnosisView',

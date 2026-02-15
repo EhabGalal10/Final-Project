@@ -26,7 +26,7 @@ class _QuickActionsState extends State<QuickActions> {
         if (state is DiagnosisFailure) {
           showToast(
                 context,
-                message: "${state.message}",
+                message: state.message,
                 backgroundColor: Colors.red.shade500,
                 shadowColor: Colors.red.shade200,
                 icon: Icons.error,

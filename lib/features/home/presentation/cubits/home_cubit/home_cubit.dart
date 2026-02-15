@@ -3,10 +3,8 @@ import 'dart:io';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:dio/dio.dart';
 import 'package:final_project/features/home/data/models/diagnosis_model.dart';
-import 'package:final_project/features/history/presentation/cubits/history_cubit/history_cubit.dart';
 import 'package:final_project/features/home/presentation/cubits/home_cubit/home_state.dart';
 import 'package:firebase_auth/firebase_auth.dart';
-import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
 class HomeCubit extends Cubit<HomeState> {
@@ -28,7 +26,7 @@ class HomeCubit extends Cubit<HomeState> {
     return doc['name'];
   }
 
-  Future<DiagnosisModel?> getPrediction(File imageFile, BuildContext context) async {
+  Future<DiagnosisModel?> getPrediction(File imageFile) async {
     try {
       emit(DiagnosisLoading());
       FormData formData = FormData.fromMap({
@@ -53,8 +51,7 @@ class HomeCubit extends Cubit<HomeState> {
       //   emit(DiagnosisFailure(message: 'Select Another image'));
       //   return null;
       // }
-      context.read<HistoryCubit>().addToHistory(diagnosisModel);
-      emit(DiagnosisSuccess());
+      emit(DiagnosisSuccess(diagnosisModel: diagnosisModel));
 
       return diagnosisModel;
     }on DioException catch (e) {
@@ -78,8 +75,9 @@ class HomeCubit extends Cubit<HomeState> {
   } 
     catch (e) {
       emit(DiagnosisFailure(message: e.toString()));
-      throw Exception('Error predicting: $e');
+      return null;
     }
   }
+
 
 }
