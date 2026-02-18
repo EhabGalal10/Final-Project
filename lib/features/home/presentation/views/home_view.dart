@@ -32,7 +32,7 @@ class HomeView extends StatelessWidget {
             return connected ? child : const Center(child: NoInternetView());
           },
       child: Scaffold(
-        backgroundColor: Color(0xffF9FAFB),
+        backgroundColor: Theme.of(context).scaffoldBackgroundColor,
         drawer: CustomDrawer(),
         appBar: AppBar(
           backgroundColor: Colors.white,

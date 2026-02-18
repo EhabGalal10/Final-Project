@@ -1,3 +1,5 @@
+import 'package:final_project/core/themes/provider/mode_provider.dart';
+import 'package:final_project/core/themes/themes.dart';
 import 'package:final_project/features/Auth/presentation/views/signin_view.dart';
 import 'package:final_project/features/Auth/presentation/views/signup_view.dart';
 import 'package:final_project/features/Splash/presentation/views/splash_view.dart';
@@ -11,6 +13,7 @@ import 'package:final_project/firebase_options.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:provider/provider.dart';
 import 'package:supabase_flutter/supabase_flutter.dart';
 
 void main() async {
@@ -20,7 +23,12 @@ void main() async {
     url: 'https://bmjcadvjmwvjxuoethjg.supabase.co',
     anonKey: 'sb_publishable_lxrcM3_0cr4n8LfNHWZNNg_SS5BRCc-',
   );
-  runApp(const Mokhi());
+  runApp(
+    ChangeNotifierProvider(
+      create: (context) => ModeProvider(),
+      child: const Mokhi(),
+    ),
+  );
 }
 
 class Mokhi extends StatelessWidget {
@@ -37,6 +45,11 @@ class Mokhi extends StatelessWidget {
         title: 'Mokhi',
         home: SplashView(),
         debugShowCheckedModeBanner: false,
+        theme: Themes.light,
+        darkTheme: Themes.dark,
+        themeMode: Provider.of<ModeProvider>(context).lightModeEnabled
+            ? ThemeMode.light
+            : ThemeMode.dark,
         routes: {
           '/signin': (context) => const SignInView(),
           '/signup': (context) => const SignupView(),
