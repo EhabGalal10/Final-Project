@@ -17,7 +17,6 @@ class ModeProvider with ChangeNotifier {
     else if (_lightModeEnabled == false) {
       _lightModeEnabled = true;
             notifyListeners();
-
     }
   }
 }

@@ -1,5 +1,4 @@
 import 'package:final_project/core/themes/provider/mode_provider.dart';
-import 'package:final_project/core/utils/app_colors.dart';
 import 'package:final_project/features/home/presentation/widgets/logout_drawer.dart';
 import 'package:final_project/features/home/presentation/widgets/top_drawer.dart';
 import 'package:flutter/material.dart';
@@ -17,34 +16,64 @@ class _CustomDrawerState extends State<CustomDrawer> {
   Widget build(BuildContext context) {
     var provider = Provider.of<ModeProvider>(context);
     bool pvalue = provider.lightModeEnabled;
+    final theme = Theme.of(context);
+
     return Drawer(
-      backgroundColor: Colors.white,
+      backgroundColor: theme.colorScheme.surface,
       child: Column(
         children: [
-          CustomTopDrawer(),
+          const CustomTopDrawer(),
           const SizedBox(height: 20),
+
+          // ================= Home =================
           ListTile(
-            leading: const Icon(Icons.home_outlined),
-            title: const Text('Home', style: TextStyle(fontSize: 16)),
+            leading: Icon(
+              Icons.home_outlined,
+              color: theme.colorScheme.onSurface,
+            ),
+            title: Text(
+              'Home',
+              style: TextStyle(
+                fontSize: 16,
+                color: theme.colorScheme.onSurface,
+                fontWeight: FontWeight.w500,
+              ),
+            ),
             onTap: () {
               Navigator.pop(context);
             },
           ),
+
+          // ================= Dark Mode =================
           ListTile(
             dense: true,
-            leading: const Icon(Icons.dark_mode_outlined, size: 22),
-            title: const Text('Dark Mode', style: TextStyle(fontSize: 14)),
+            leading: Icon(
+              Icons.dark_mode_outlined,
+              size: 22,
+              color: theme.colorScheme.onSurface,
+            ),
+            title: Text(
+              'Dark Mode',
+              style: TextStyle(
+                fontSize: 14,
+                color: theme.colorScheme.onSurface,
+              ),
+            ),
             trailing: Transform.scale(
-              scale: 0.88, // 👈 صغر الرقم أكتر عشان يصغر الزرار
+              scale: 0.88,
               child: Switch(
                 value: pvalue,
-                activeThumbColor: Colors.black,
-                inactiveThumbColor: AppColors.primaryColor,
-                inactiveTrackColor: const Color(0xffc8e4fe),
+
+                // لما يكون شغال
+                activeColor: theme.colorScheme.primary,
+
+                // لون الـ track في light
+                inactiveTrackColor:
+                    theme.brightness == Brightness.light
+                        ? const Color(0xffc8e4fe)
+                        : theme.colorScheme.surfaceVariant,
+
                 onChanged: (value) {
-                  setState(() {
-                    pvalue = value;
-                  });
                   provider.changeMode();
                 },
               ),
@@ -53,8 +82,8 @@ class _CustomDrawerState extends State<CustomDrawer> {
 
           const Spacer(),
 
-          // ===== Logout =====
-          LogOutDrawer(),
+          // ================= Logout =================
+          const LogOutDrawer(),
         ],
       ),
     );
