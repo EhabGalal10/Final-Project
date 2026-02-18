@@ -65,13 +65,12 @@ class _CustomDrawerState extends State<CustomDrawer> {
                 value: pvalue,
 
                 // لما يكون شغال
-                activeColor: theme.colorScheme.primary,
+                activeThumbColor: theme.colorScheme.primary,
 
                 // لون الـ track في light
-                inactiveTrackColor:
-                    theme.brightness == Brightness.light
-                        ? const Color(0xffc8e4fe)
-                        : theme.colorScheme.surfaceVariant,
+                inactiveTrackColor: theme.brightness == Brightness.dark
+                    ? const Color(0xffc8e4fe)
+                    : theme.colorScheme.surfaceContainerHighest,
 
                 onChanged: (value) {
                   provider.changeMode();
