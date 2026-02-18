@@ -45,7 +45,7 @@ class DiagnosisView extends StatelessWidget {
       body: ListView(
         physics: BouncingScrollPhysics(),
         children: [
-          CustomDisplayImage(image: result.image, name: result.imagename),
+          CustomDisplayImage(image: result.image, name: result.imagename,imageUrl: result.imageurl,),
           CustomDiagnosisResult(result: result),
           SizedBox(height: 24),
           CustomImportantNotes(),

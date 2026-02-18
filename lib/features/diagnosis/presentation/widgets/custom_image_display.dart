@@ -5,9 +5,10 @@ import 'package:final_project/core/utils/app_text_styles.dart';
 import 'package:flutter/material.dart';
 
 class CustomDisplayImage extends StatelessWidget {
-  const CustomDisplayImage({super.key, this.image, this.name});
+  const CustomDisplayImage({super.key, this.image, this.name, this.imageUrl});
   final File? image;
   final String? name;
+  final String? imageUrl;
 
   @override
   @override
@@ -55,7 +56,7 @@ class CustomDisplayImage extends StatelessWidget {
                 width: w * 0.8,
                 decoration: BoxDecoration(
                   image: DecorationImage(
-                    image: FileImage(image!),
+                    image:imageUrl==null? FileImage(image!):NetworkImage(imageUrl!),
                     fit: BoxFit.cover,
                   ),
                   borderRadius: BorderRadius.all(Radius.circular(10)),

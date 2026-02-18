@@ -15,7 +15,7 @@ class HistoryCubit extends Cubit<HistoryState> {
   void addToHistory(DiagnosisModel diagnosisModel) async {
     final uid = FirebaseAuth.instance.currentUser!.uid;
     final imageUrl =
-      await uploadImageToSupabase(File(diagnosisModel.image.path));
+      await uploadImageToSupabase(File(diagnosisModel.image!.path));
     await FirebaseFirestore.instance
         .collection('users')
         .doc(uid)
