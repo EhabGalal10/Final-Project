@@ -39,6 +39,7 @@ dependencies:
   flutter:
     sdk: flutter
   flutter_bloc: ^9.1.1
+  flutter_native_splash: ^2.4.7
   flutter_offline: ^6.0.0
   flutter_phone_direct_caller: ^2.2.1
   flutter_svg: ^2.2.3
