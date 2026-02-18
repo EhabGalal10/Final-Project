@@ -1,3 +1,5 @@
+import 'package:cached_network_image/cached_network_image.dart';
+import 'package:final_project/core/utils/app_colors.dart';
 import 'package:flutter/material.dart';
 
 class DiagnosisHistoryCard extends StatelessWidget {
@@ -28,16 +30,20 @@ class DiagnosisHistoryCard extends StatelessWidget {
               borderRadius: const BorderRadius.horizontal(
                 left: Radius.circular(16),
               ),
-              child: Image.network(
-                model['image'],
-                width: 110,
-                height: 110,
+              child: CachedNetworkImage(
+                imageUrl: model['image'],
+                errorWidget: (context, url, error) => Container(
+                  color: AppColors.diagnosisGradientColorBottom,
+                  child: Icon(Icons.error),
+                ),
+                height: 100,
+                width: 100,
                 fit: BoxFit.cover,
               ),
             ),
-      
+
             const SizedBox(width: 12),
-      
+
             // Info
             Expanded(
               child: Padding(
@@ -54,7 +60,7 @@ class DiagnosisHistoryCard extends StatelessWidget {
                       ),
                     ),
                     const SizedBox(height: 6),
-      
+
                     Text(
                       'Date: ${model['date'].toDate().day}/${model['date'].toDate().month}/${model['date'].toDate().year}',
                       style: const TextStyle(
@@ -62,9 +68,9 @@ class DiagnosisHistoryCard extends StatelessWidget {
                         color: Color(0xff6B7280),
                       ),
                     ),
-      
+
                     const SizedBox(height: 8),
-      
+
                     // Confidence
                     Row(
                       children: [
