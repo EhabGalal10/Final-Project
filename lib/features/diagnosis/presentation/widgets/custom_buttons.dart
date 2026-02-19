@@ -1,4 +1,3 @@
-import 'package:final_project/core/utils/app_colors.dart';
 import 'package:final_project/core/utils/app_strings.dart';
 import 'package:final_project/core/utils/app_text_styles.dart';
 import 'package:flutter/material.dart';
@@ -10,62 +9,30 @@ class CustomButtons extends StatelessWidget {
   Widget build(BuildContext context) {
     double h = MediaQuery.of(context).size.height;
     double w = MediaQuery.of(context).size.width;
+
     return Padding(
       padding: const EdgeInsets.all(16),
-      child: Column(
-        children: [
-          ElevatedButton(
-            onPressed: () {},
-            style: ElevatedButton.styleFrom(
-              minimumSize: Size(w * 0.9, h * 0.05),
-              backgroundColor: AppColors.primaryColor,
-              padding: EdgeInsets.symmetric(vertical: 20),
-              shape: RoundedRectangleBorder(
-                borderRadius: BorderRadius.circular(10),
-              ),
-            ),
-            child: Row(
-              mainAxisSize: MainAxisSize.min,
-              children: [
-                Icon(Icons.download, color: Colors.white, size: 27),
-                SizedBox(width: 12),
-                Text(
-                  AppStrings.downloadReport,
-                  style: AppTextStyles.inter800style40shadow.copyWith(
-                    fontSize: 18,
-                    color: Colors.white,
-                  ),
-                ),
-              ],
-            ),
+      child: ElevatedButton(
+        onPressed: () {},
+        style: ElevatedButton.styleFrom(
+          minimumSize: Size(w * 0.9, h * 0.05),
+          padding: const EdgeInsets.symmetric(vertical: 20),
+          shape: RoundedRectangleBorder(
+            borderRadius: BorderRadius.circular(10),
           ),
-          SizedBox(height: 16),
-          // ElevatedButton(
-          //   onPressed: () {},
-          //   style: ElevatedButton.styleFrom(
-          //     minimumSize: Size(w * 0.7, h * 0.05),
-          //     backgroundColor: AppColors.uploadcontainerColor,
-          //     padding: EdgeInsets.symmetric(vertical: 20),
-          //     shape: RoundedRectangleBorder(
-          //       borderRadius: BorderRadius.circular(10),
-          //     ),
-          //   ),
-          //   child: Row(
-          //     mainAxisSize: MainAxisSize.min,
-          //     children: [
-          //       Icon(Icons.refresh, color: Colors.white, size: 27),
-          //       SizedBox(width: 12),
-          //       Text(
-          //         AppStrings.newAnalysis,
-          //         style: AppTextStyles.inter700style30.copyWith(
-          //           fontSize: 18,
-          //           color: Colors.white,
-          //         ),
-          //       ),
-          //     ],
-          //   ),
-          // ),
-        ],
+        ),
+        child: Row(
+          mainAxisSize: MainAxisSize.min,
+          children: [
+            const Icon(Icons.download, size: 27),
+            const SizedBox(width: 12),
+            Text(
+              AppStrings.downloadReport,
+              style: AppTextStyles.inter800style40shadow
+                  .copyWith(fontSize: 18),
+            ),
+          ],
+        ),
       ),
     );
   }

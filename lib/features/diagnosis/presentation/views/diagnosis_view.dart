@@ -1,4 +1,3 @@
-import 'package:final_project/core/utils/app_colors.dart';
 import 'package:final_project/core/utils/app_strings.dart';
 import 'package:final_project/core/utils/app_text_styles.dart';
 import 'package:final_project/features/diagnosis/presentation/widgets/custom_buttons.dart';
@@ -13,39 +12,53 @@ class DiagnosisView extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final theme = Theme.of(context);
+    final isDark = theme.brightness == Brightness.dark;
     Map<String, dynamic> modelResult =
         ModalRoute.of(context)!.settings.arguments as Map<String, dynamic>;
     DiagnosisModel result = modelResult['diagnosis'];
+
     return Scaffold(
+      backgroundColor: theme.scaffoldBackgroundColor,
+
       floatingActionButton: FloatingActionButton(
-        onPressed: () {
-          Navigator.pop(context);
-        },
-        backgroundColor: AppColors.findDoctorContainerColor,
-        child: Icon(Icons.refresh, size: 30, color: AppColors.primaryColor),
+        onPressed: () => Navigator.pop(context),
+        backgroundColor: theme.colorScheme.surfaceContainerHighest,
+        child: Icon(Icons.refresh, size: 30, color: theme.colorScheme.primary),
       ),
-      backgroundColor: Color(0xffF9FAFB),
+
       appBar: AppBar(
-        backgroundColor: Colors.white,
-        forceMaterialTransparency: true,
+        backgroundColor: theme.appBarTheme.backgroundColor,
+        elevation: 0,
         title: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
             Text(
               AppStrings.mriDiagnosis,
-              style: AppTextStyles.inter700style20.copyWith(fontSize: 20),
+              style: AppTextStyles.inter700style20.copyWith(
+                color: isDark
+                    ? theme.colorScheme.onSurface.withOpacity(0.7)
+                    : null,
+              ),
             ),
             Text(
               AppStrings.aiPowered,
-              style: AppTextStyles.interRegularstyle12,
+              style: AppTextStyles.interRegularstyle12.copyWith(
+                color: theme.colorScheme.onSurface.withOpacity(0.6),
+              ),
             ),
           ],
         ),
       ),
+
       body: ListView(
         physics: BouncingScrollPhysics(),
         children: [
-          CustomDisplayImage(image: result.image, name: result.imagename,imageUrl: result.imageurl,),
+          CustomDisplayImage(
+            image: result.image,
+            name: result.imagename,
+            imageUrl: result.imageurl,
+          ),
           CustomDiagnosisResult(result: result),
           SizedBox(height: 24),
           CustomImportantNotes(),

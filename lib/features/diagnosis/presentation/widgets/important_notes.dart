@@ -8,57 +8,86 @@ class CustomImportantNotes extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final theme = Theme.of(context);
+    final isDark = theme.brightness == Brightness.dark;
+
     double h = MediaQuery.of(context).size.height;
+
     return Container(
-      margin: EdgeInsets.only(left: 24, right: 24),
+      margin: const EdgeInsets.symmetric(horizontal: 24),
       height: h * 0.31,
-      decoration: const BoxDecoration(
-        color: Colors.white,
-        borderRadius: BorderRadius.all(Radius.circular(16)),
+      decoration: BoxDecoration(
+        color: theme.colorScheme.surface,
+        borderRadius: BorderRadius.circular(16),
         boxShadow: [
-          BoxShadow(color: Colors.black12, blurRadius: 4, offset: Offset(0, 2)),
+          BoxShadow(
+            color: isDark ? Colors.black26 : Colors.black12,
+            blurRadius: 4,
+            offset: const Offset(0, 2),
+          ),
         ],
       ),
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
           Padding(
-            padding: const EdgeInsets.only(left: 16.0, top: 16.0),
+            padding: const EdgeInsets.only(left: 16, top: 16),
             child: Text(
               AppStrings.importantNotice,
-              style: AppTextStyles.inter700style20.copyWith(fontSize: 18),
+              style: AppTextStyles.inter700style20.copyWith(
+                fontSize: 18,
+                color: isDark ? theme.colorScheme.onSurface : null,
+              ),
             ),
           ),
 
-          SizedBox(height: 16),
-          Divider(color: Color(0xffE5E7EB)),
-          SizedBox(height: 16),
+          const SizedBox(height: 16),
+
+          Divider(
+            color: isDark
+                ? theme.colorScheme.outlineVariant
+                : const Color(0xffE5E7EB),
+          ),
+
+          const SizedBox(height: 6),
+
           Container(
-            padding: EdgeInsets.all(17),
-            margin: EdgeInsets.symmetric(horizontal: 16),
+            padding: const EdgeInsets.all(17),
+            margin: const EdgeInsets.symmetric(horizontal: 16),
             decoration: BoxDecoration(
-              borderRadius: BorderRadius.all(Radius.circular(10)),
-              color: AppColors.findDoctorContainerColor,
+              borderRadius: BorderRadius.circular(10),
+              color: isDark
+                  ? AppColors.findDoctorContainerDarkColor
+                  : theme.colorScheme.surfaceContainerHighest,
             ),
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
                 Row(
                   children: [
-                    Icon(Icons.info, color: AppColors.primaryColor, size: 18),
-                    SizedBox(width: 8),
+                    Icon(
+                      Icons.info,
+                      color: theme.colorScheme.primary,
+                      size: 18,
+                    ),
+                    const SizedBox(width: 8),
                     Text(
                       AppStrings.importantNotice,
                       style: AppTextStyles.interMediumstyle16.copyWith(
-                        color: AppColors.primaryColor,
-                        fontSize: 16,
+                        color: theme.colorScheme.primary,
                       ),
                     ),
                   ],
                 ),
+                const SizedBox(height: 8),
                 Text(
                   'This AI diagnosis is for screening purposes only. Please consult with a qualified radiologist or healthcare professional for final diagnosis and treatment recommendations.',
-                  style: AppTextStyles.inter400style16.copyWith(fontSize: 14),
+                  style: AppTextStyles.inter400style16.copyWith(
+                    fontSize: 14,
+                    color: isDark
+                        ? theme.colorScheme.onSurface.withOpacity(0.7)
+                        : null,
+                  ),
                 ),
               ],
             ),
