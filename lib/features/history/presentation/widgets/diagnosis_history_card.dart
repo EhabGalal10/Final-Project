@@ -1,23 +1,26 @@
 import 'package:cached_network_image/cached_network_image.dart';
-import 'package:final_project/core/utils/app_colors.dart';
 import 'package:flutter/material.dart';
 
 class DiagnosisHistoryCard extends StatelessWidget {
   final Map<String, dynamic> model;
+  final VoidCallback? ontap;
 
   const DiagnosisHistoryCard({super.key, required this.model, this.ontap});
-  final VoidCallback? ontap;
+
   @override
   Widget build(BuildContext context) {
+    final theme = Theme.of(context);
+    final isDark = theme.brightness == Brightness.dark;
+
     return GestureDetector(
       onTap: ontap,
       child: Container(
         decoration: BoxDecoration(
-          color: Colors.white,
+          color: theme.colorScheme.surface,
           borderRadius: BorderRadius.circular(16),
           boxShadow: [
             BoxShadow(
-              color: Colors.black.withValues(alpha: 0.06),
+              color: isDark ? Colors.black26 : Colors.black.withOpacity(0.06),
               blurRadius: 12,
               offset: const Offset(0, 6),
             ),
@@ -25,7 +28,6 @@ class DiagnosisHistoryCard extends StatelessWidget {
         ),
         child: Row(
           children: [
-            // Image
             ClipRRect(
               borderRadius: const BorderRadius.horizontal(
                 left: Radius.circular(16),
@@ -33,8 +35,8 @@ class DiagnosisHistoryCard extends StatelessWidget {
               child: CachedNetworkImage(
                 imageUrl: model['image'],
                 errorWidget: (context, url, error) => Container(
-                  color: AppColors.diagnosisGradientColorBottom,
-                  child: Icon(Icons.error),
+                  color: theme.colorScheme.surfaceContainerHighest,
+                  child: Icon(Icons.error, color: theme.colorScheme.error),
                 ),
                 height: 100,
                 width: 100,
@@ -44,7 +46,6 @@ class DiagnosisHistoryCard extends StatelessWidget {
 
             const SizedBox(width: 12),
 
-            // Info
             Expanded(
               child: Padding(
                 padding: const EdgeInsets.symmetric(vertical: 12),
@@ -53,42 +54,45 @@ class DiagnosisHistoryCard extends StatelessWidget {
                   children: [
                     Text(
                       model['diagnosis'],
-                      style: const TextStyle(
+                      style: TextStyle(
                         fontSize: 16,
                         fontWeight: FontWeight.w600,
-                        color: Color(0xff111827),
+                        color: theme.colorScheme.onSurface,
                       ),
                     ),
                     const SizedBox(height: 6),
 
                     Text(
                       'Date: ${model['date'].toDate().day}/${model['date'].toDate().month}/${model['date'].toDate().year}',
-                      style: const TextStyle(
+                      style: TextStyle(
                         fontSize: 13,
-                        color: Color(0xff6B7280),
+                        color: theme.colorScheme.onSurface.withOpacity(0.6),
                       ),
                     ),
 
                     const SizedBox(height: 8),
 
-                    // Confidence
                     Row(
                       children: [
                         Expanded(
                           child: LinearProgressIndicator(
                             value: model['confidence'],
                             minHeight: 7,
-                            backgroundColor: const Color(0xffE5E7EB),
-                            color: getConfidenceColor(model['confidence']),
+                            backgroundColor:
+                                theme.colorScheme.surfaceContainerHighest,
+                            color: getConfidenceColor(
+                              model['confidence'],
+                              theme,
+                            ),
                             borderRadius: BorderRadius.circular(8),
                           ),
                         ),
                         const SizedBox(width: 8),
                         Text(
-                          '${model['confidence'].toStringAsFixed(2)}%',
-                          style: const TextStyle(
+                          '${(model['confidence'] * 100).toStringAsFixed(0)}%',
+                          style: TextStyle(
                             fontWeight: FontWeight.w600,
-                            color: Color(0xff374151),
+                            color: theme.colorScheme.onSurface,
                           ),
                         ),
                       ],
@@ -103,9 +107,13 @@ class DiagnosisHistoryCard extends StatelessWidget {
     );
   }
 
-  Color getConfidenceColor(double value) {
-    if (value >= 0.8) return const Color(0xff16A34A); // أخضر
-    if (value >= 0.5) return const Color(0xffF59E0B); // برتقالي
-    return const Color(0xffDC2626); // أحمر
+  Color getConfidenceColor(double value, ThemeData theme) {
+    if (value >= 0.8) {
+      return Colors.green;
+    }
+    if (value >= 0.5) {
+      return Colors.orange;
+    }
+    return theme.colorScheme.error;
   }
 }

@@ -25,13 +25,20 @@ class _HistoryViewState extends State<HistoryView> {
 
   @override
   Widget build(BuildContext context) {
+    final theme = Theme.of(context);
+
     return Scaffold(
-      backgroundColor: const Color(0xffF9FAFB),
+      backgroundColor: theme.scaffoldBackgroundColor,
       appBar: AppBar(
-        backgroundColor: Colors.white,
-        forceMaterialTransparency: true,
+        backgroundColor: theme.appBarTheme.backgroundColor,
+        elevation: 0,
         centerTitle: true,
-        title: Text('Diagnosis History', style: AppTextStyles.inter700style20),
+        title: Text(
+          'Diagnosis History',
+          style: AppTextStyles.inter700style20.copyWith(
+            color: theme.colorScheme.onSurface,
+          ),
+        ),
       ),
       body: BlocBuilder<HistoryCubit, HistoryState>(
         builder: (context, state) {
@@ -50,26 +57,29 @@ class _HistoryViewState extends State<HistoryView> {
                         background: Container(
                           padding: const EdgeInsets.only(left: 16),
                           alignment: Alignment.centerLeft,
-                          decoration: BoxDecoration(
-                            color: const Color(0xffDC2626),
-                          ),
-                          child: const Icon(
+                          color: theme.colorScheme.error,
+                          child: Icon(
                             Icons.delete_outline,
-                            color: Colors.white,
+                            color: theme.colorScheme.onError,
                             size: 28,
                           ),
                         ),
                         onDismissed: (direction) {
-                        context.read<HistoryCubit>().removeFromHistory(state.history[index]['date']);
+                          context.read<HistoryCubit>().removeFromHistory(
+                            state.history[index]['date'],
+                          );
                         },
                         child: DiagnosisHistoryCard(
                           ontap: () {
-
                             Navigator.pushNamed(
-                context,
-                '/diagnosisView',
-                arguments: {'diagnosis': DiagnosisModel.fromMap(state.history[index])},
-              );
+                              context,
+                              '/diagnosisView',
+                              arguments: {
+                                'diagnosis': DiagnosisModel.fromMap(
+                                  state.history[index],
+                                ),
+                              },
+                            );
                           },
                           model: state.history[index],
                         ),
@@ -83,4 +93,3 @@ class _HistoryViewState extends State<HistoryView> {
     );
   }
 }
-
