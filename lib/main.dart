@@ -50,6 +50,8 @@ class Mokhi extends StatelessWidget {
         themeMode: Provider.of<ModeProvider>(context).lightModeEnabled
             ? ThemeMode.dark
             : ThemeMode.light,
+        themeAnimationCurve: Curves.linear,
+        themeAnimationDuration: Durations.extralong1,
         routes: {
           '/signin': (context) => const SignInView(),
           '/signup': (context) => const SignupView(),

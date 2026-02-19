@@ -8,20 +8,27 @@ class DoctorsView extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final theme = Theme.of(context);
+
     return Scaffold(
-      backgroundColor: Color(0xffF9FAFB),
+      backgroundColor: theme.scaffoldBackgroundColor,
       appBar: AppBar(
-        backgroundColor: Colors.white,
-        forceMaterialTransparency: true,
-        title: Text("Doctors", style: AppTextStyles.inter700style20),
+        backgroundColor: theme.appBarTheme.backgroundColor,
+        elevation: 0,
+        title: Text(
+          "Doctors",
+          style: AppTextStyles.inter700style20.copyWith(
+            color: theme.colorScheme.onSurface,
+          ),
+        ),
         centerTitle: true,
       ),
       body: ListView.builder(
-        physics: BouncingScrollPhysics(),
+        physics: const BouncingScrollPhysics(),
         padding: const EdgeInsets.all(12),
         itemCount: DoctorsModel.doctors.length,
         itemBuilder: (context, index) {
-          final DoctorsModel doctor = DoctorsModel.doctors[index];
+          final doctor = DoctorsModel.doctors[index];
           return CustomDoctorCard(doctor: doctor);
         },
       ),
