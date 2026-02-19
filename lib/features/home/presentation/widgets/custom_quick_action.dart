@@ -1,4 +1,3 @@
-import 'package:final_project/core/utils/app_colors.dart';
 import 'package:final_project/core/utils/app_text_styles.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
@@ -10,38 +9,54 @@ class CustomQuickActions extends StatelessWidget {
     required this.image,
     this.onTap,
   });
+
   final String title;
   final String image;
   final VoidCallback? onTap;
+
   @override
   Widget build(BuildContext context) {
+    final theme = Theme.of(context);
     double h = MediaQuery.sizeOf(context).height;
     double w = MediaQuery.sizeOf(context).width;
+
     return InkWell(
+      borderRadius: BorderRadius.circular(12),
       onTap: onTap,
       child: Container(
         width: w * 0.35,
         height: h * 0.12,
         decoration: BoxDecoration(
-          color: AppColors.findDoctorContainerColor,
+          color: theme.colorScheme.surfaceContainerHighest,
           borderRadius: BorderRadius.circular(12),
           boxShadow: [
             BoxShadow(
-              color: Colors.black12,
-              blurRadius: 4,
-              offset: Offset(0, 2),
+              color: theme.brightness == Brightness.dark
+                  ? Colors.black26
+                  : Colors.black12,
+              blurRadius: 6,
+              offset: const Offset(0, 3),
             ),
           ],
         ),
         child: Column(
-          mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+          mainAxisAlignment: MainAxisAlignment.center,
           children: [
-            SizedBox(height: 10),
-            SvgPicture.asset(image, height: 30, width: 30),
+            SvgPicture.asset(
+              image,
+              height: 30,
+              width: 30,
+              colorFilter: ColorFilter.mode(
+                theme.colorScheme.primary,
+                BlendMode.dst,
+              ),
+              // color: theme.colorScheme.primary,
+            ),
+            const SizedBox(height: 8),
             Text(
               title,
               style: AppTextStyles.inter400style16.copyWith(
-                color: Color(0xff374151),
+                color: theme.colorScheme.onSurface,
                 fontSize: 16,
               ),
             ),

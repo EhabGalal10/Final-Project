@@ -2,7 +2,6 @@ import 'package:final_project/core/utils/app_colors.dart';
 import 'package:flutter/material.dart';
 
 class Themes {
-
   // ================= LIGHT THEME =================
   static final ThemeData light = ThemeData(
     brightness: Brightness.light,
@@ -13,10 +12,10 @@ class Themes {
     colorScheme: ColorScheme.light(
       primary: AppColors.primaryColor,
       secondary: const Color(0xff3B82F6),
-      background: const Color(0xffF9FAFB),
       surface: Colors.white,
       onPrimary: Colors.white,
-      onBackground: const Color(0xff111827),
+      surfaceContainerHighest: Color(0xffEFF6FF),
+      secondaryContainer: Color(0xffF9FAFB),
       onSurface: const Color(0xff111827),
     ),
 
@@ -26,9 +25,7 @@ class Themes {
       foregroundColor: Color(0xff111827),
     ),
 
-    drawerTheme: const DrawerThemeData(
-      backgroundColor: Colors.white,
-    ),
+    drawerTheme: const DrawerThemeData(backgroundColor: Colors.white),
 
     cardColor: Colors.white,
 
@@ -36,16 +33,13 @@ class Themes {
       style: ElevatedButton.styleFrom(
         backgroundColor: AppColors.primaryColor,
         foregroundColor: Colors.white,
-        shape: RoundedRectangleBorder(
-          borderRadius: BorderRadius.circular(10),
-        ),
+        shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(10)),
       ),
     ),
 
     switchTheme: SwitchThemeData(
-
-      thumbColor: MaterialStateProperty.all(AppColors.primaryColor),
-      trackColor: MaterialStateProperty.all(const Color(0xffc8e4fe)),
+      thumbColor: WidgetStateProperty.all(AppColors.primaryColor),
+      trackColor: WidgetStateProperty.all(const Color(0xffc8e4fe)),
     ),
   );
 
@@ -59,10 +53,9 @@ class Themes {
     colorScheme: ColorScheme.dark(
       primary: const Color(0xff3B82F6),
       secondary: const Color(0xff60A5FA),
-      background: const Color(0xff0F172A),
       surface: const Color(0xff1E293B),
+      secondaryContainer: Color(0xff1E293B),
       onPrimary: Colors.white,
-      onBackground: Colors.white,
       onSurface: Colors.white,
     ),
 
@@ -72,9 +65,7 @@ class Themes {
       foregroundColor: Colors.white,
     ),
 
-    drawerTheme: const DrawerThemeData(
-      backgroundColor: Color(0xff1E293B),
-    ),
+    drawerTheme: const DrawerThemeData(backgroundColor: Color(0xff1E293B)),
 
     cardColor: const Color(0xff1E293B),
 
@@ -82,15 +73,13 @@ class Themes {
       style: ElevatedButton.styleFrom(
         backgroundColor: Color(0xff3B82F6),
         foregroundColor: Colors.white,
-        shape: RoundedRectangleBorder(
-          borderRadius: BorderRadius.circular(10),
-        ),
+        shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(10)),
       ),
     ),
 
     switchTheme: SwitchThemeData(
-      thumbColor: MaterialStateProperty.all(const Color(0xff3B82F6)),
-      trackColor: MaterialStateProperty.all(const Color(0xff334155)),
+      thumbColor: WidgetStateProperty.all(const Color(0xff3B82F6)),
+      trackColor: WidgetStateProperty.all(const Color(0xff334155)),
     ),
   );
 }

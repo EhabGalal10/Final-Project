@@ -9,20 +9,24 @@ class QuickActions extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final theme = Theme.of(context);
     double h = MediaQuery.sizeOf(context).height;
+
     return Container(
       height: h * 0.23,
-      padding: EdgeInsets.only(top: 20, left: 20, right: 20, bottom: 5),
-      margin: EdgeInsets.all(24),
+      padding: const EdgeInsets.only(top: 20, left: 20, right: 20, bottom: 5),
+      margin: const EdgeInsets.all(24),
       decoration: BoxDecoration(
-        color: Colors.white,
+        color: theme.colorScheme.surface,
         borderRadius: BorderRadius.circular(12),
         boxShadow: [
           BoxShadow(
-            color: Colors.grey.shade100,
-            spreadRadius: 2,
+            color: theme.brightness == Brightness.dark
+                ? Colors.black26
+                : Colors.grey.shade200,
+            spreadRadius: 1,
             blurRadius: 5,
-            offset: Offset(0, 3),
+            offset: const Offset(0, 3),
           ),
         ],
       ),
@@ -31,23 +35,28 @@ class QuickActions extends StatelessWidget {
         children: [
           Text(
             AppStrings.quickActions,
-            style: AppTextStyles.inter700style20.copyWith(fontSize: 18),
+            style: AppTextStyles.inter700style20.copyWith(
+              fontSize: 18,
+              color: theme.colorScheme.onSurface,
+            ),
           ),
-          SizedBox(height: 13),
+          const SizedBox(height: 13),
           Row(
             mainAxisAlignment: MainAxisAlignment.spaceBetween,
             children: [
               CustomQuickActions(
                 title: AppStrings.viewHistory,
                 image: Assets.assetsImagesHistory,
-                onTap: () async {
+                onTap: () {
                   Navigator.pushNamed(context, '/historyView');
                 },
               ),
               CustomQuickActions(
                 title: AppStrings.findDoctor,
                 image: Assets.assetsImagesFindDoctor,
-                onTap: () => Navigator.pushNamed(context, '/doctorsView'),
+                onTap: () {
+                  Navigator.pushNamed(context, '/doctorsView');
+                },
               ),
             ],
           ),

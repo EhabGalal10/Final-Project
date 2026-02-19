@@ -1,5 +1,4 @@
 import 'package:final_project/core/functions/show_toast.dart';
-import 'package:final_project/core/utils/app_colors.dart';
 import 'package:final_project/core/utils/app_strings.dart';
 import 'package:final_project/core/utils/app_text_styles.dart';
 import 'package:final_project/core/widgets/no_intenet_view.dart';
@@ -18,6 +17,8 @@ class HomeView extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final theme = Theme.of(context);
+
     return OfflineBuilder(
       connectivityBuilder:
           (
@@ -32,19 +33,21 @@ class HomeView extends StatelessWidget {
             return connected ? child : const Center(child: NoInternetView());
           },
       child: Scaffold(
-        backgroundColor: Theme.of(context).scaffoldBackgroundColor,
-        drawer: CustomDrawer(),
+        backgroundColor: theme.scaffoldBackgroundColor,
+        drawer: const CustomDrawer(),
         appBar: AppBar(
-          backgroundColor: Colors.white,
           elevation: 0,
-          actionsPadding: EdgeInsets.symmetric(horizontal: 16),
+          backgroundColor: theme.appBarTheme.backgroundColor,
+          actionsPadding: const EdgeInsets.symmetric(horizontal: 16),
           clipBehavior: Clip.none,
           title: Text(
             AppStrings.brainMriDiagnosis,
-            style: AppTextStyles.inter700style20,
+            style: AppTextStyles.inter700style20.copyWith(
+              color: theme.colorScheme.onSurface,
+            ),
           ),
           centerTitle: true,
-          actions: [SubLogoHome()],
+          actions: const [SubLogoHome()],
         ),
         body: BlocConsumer<HomeCubit, HomeState>(
           listener: (context, state) {
@@ -52,22 +55,24 @@ class HomeView extends StatelessWidget {
               showToast(
                 context,
                 message: state.message,
-                backgroundColor: Colors.red.shade500,
-                shadowColor: Colors.red.shade200,
+                backgroundColor: theme.colorScheme.error,
+                shadowColor: theme.colorScheme.error.withOpacity(0.4),
                 icon: Icons.error,
               );
             } else if (state is DiagnosisSuccess) {
               context.read<HistoryCubit>().addToHistory(state.diagnosisModel);
+
               Navigator.pushNamed(
                 context,
                 '/diagnosisView',
                 arguments: {'diagnosis': state.diagnosisModel},
               );
+
               showToast(
                 context,
                 message: "Completed Successfully 😊",
-                backgroundColor: Colors.green.shade500,
-                shadowColor: Colors.green.shade200,
+                backgroundColor: theme.colorScheme.primary,
+                shadowColor: theme.colorScheme.primary.withOpacity(0.4),
               );
             }
           },
@@ -75,12 +80,12 @@ class HomeView extends StatelessWidget {
             if (state is DiagnosisLoading) {
               return Center(
                 child: CircularProgressIndicator(
-                  color: AppColors.primaryColor,
+                  color: theme.colorScheme.primary,
                 ),
               );
             }
-        
-            return CustomHomeBody();
+
+            return const CustomHomeBody();
           },
         ),
       ),
