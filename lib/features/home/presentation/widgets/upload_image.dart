@@ -17,6 +17,7 @@ class UploadImage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final theme = Theme.of(context);
+    final isDark = theme.brightness == Brightness.dark;
     double h = MediaQuery.of(context).size.height;
     double w = MediaQuery.of(context).size.width;
 
@@ -44,7 +45,9 @@ class UploadImage extends StatelessWidget {
             'Upload Image Screen',
             style: AppTextStyles.inter700style20.copyWith(
               fontSize: 18,
-              color: theme.colorScheme.onSurface,
+              color: isDark
+                  ? theme.colorScheme.onSurface.withOpacity(0.7)
+                  : null,
             ),
           ),
           const SizedBox(height: 16),

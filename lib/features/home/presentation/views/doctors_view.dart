@@ -9,16 +9,17 @@ class DoctorsView extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final theme = Theme.of(context);
-
+    final isDark = theme.brightness == Brightness.dark;
     return Scaffold(
       backgroundColor: theme.scaffoldBackgroundColor,
       appBar: AppBar(
         backgroundColor: theme.appBarTheme.backgroundColor,
+        automaticallyImplyLeading: false,
         elevation: 0,
         title: Text(
           "Doctors",
           style: AppTextStyles.inter700style20.copyWith(
-            color: theme.colorScheme.onSurface,
+            color: isDark ? theme.colorScheme.onSurface.withOpacity(0.7) : null,
           ),
         ),
         centerTitle: true,

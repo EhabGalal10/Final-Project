@@ -18,7 +18,7 @@ class HomeView extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final theme = Theme.of(context);
-
+    final isDark = theme.brightness == Brightness.dark;
     return OfflineBuilder(
       connectivityBuilder:
           (
@@ -43,7 +43,9 @@ class HomeView extends StatelessWidget {
           title: Text(
             AppStrings.brainMriDiagnosis,
             style: AppTextStyles.inter700style20.copyWith(
-              color: theme.colorScheme.onSurface,
+              color: isDark
+                  ? theme.colorScheme.onSurface.withOpacity(0.7)
+                  : null,
             ),
           ),
           centerTitle: true,

@@ -17,6 +17,7 @@ class CustomQuickActions extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final theme = Theme.of(context);
+    final isDark = theme.brightness == Brightness.dark;
     double h = MediaQuery.sizeOf(context).height;
     double w = MediaQuery.sizeOf(context).width;
 
@@ -56,7 +57,9 @@ class CustomQuickActions extends StatelessWidget {
             Text(
               title,
               style: AppTextStyles.inter400style16.copyWith(
-                color: theme.colorScheme.onSurface,
+                color: isDark
+                    ? theme.colorScheme.onSurface.withOpacity(0.7)
+                    : null,
                 fontSize: 16,
               ),
             ),

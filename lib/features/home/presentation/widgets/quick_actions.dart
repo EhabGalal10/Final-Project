@@ -10,6 +10,7 @@ class QuickActions extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final theme = Theme.of(context);
+    final isDark = theme.brightness == Brightness.dark;
     double h = MediaQuery.sizeOf(context).height;
 
     return Container(
@@ -21,9 +22,7 @@ class QuickActions extends StatelessWidget {
         borderRadius: BorderRadius.circular(12),
         boxShadow: [
           BoxShadow(
-            color: theme.brightness == Brightness.dark
-                ? Colors.black26
-                : Colors.grey.shade200,
+            color: isDark ? Colors.black26 : Colors.grey.shade200,
             spreadRadius: 1,
             blurRadius: 5,
             offset: const Offset(0, 3),
@@ -37,7 +36,9 @@ class QuickActions extends StatelessWidget {
             AppStrings.quickActions,
             style: AppTextStyles.inter700style20.copyWith(
               fontSize: 18,
-              color: theme.colorScheme.onSurface,
+              color: isDark
+                  ? theme.colorScheme.onSurface.withOpacity(0.7)
+                  : null,
             ),
           ),
           const SizedBox(height: 13),
