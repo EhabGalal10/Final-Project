@@ -25,7 +25,7 @@ void main() async {
   );
   runApp(
     ChangeNotifierProvider(
-      create: (context) => ModeProvider(),
+      create: (context) => ModeProvider()..getMode(),
       child: const Mokhi(),
     ),
   );
@@ -47,7 +47,7 @@ class Mokhi extends StatelessWidget {
         debugShowCheckedModeBanner: false,
         theme: Themes.light,
         darkTheme: Themes.dark,
-        themeMode: Provider.of<ModeProvider>(context).lightModeEnabled
+        themeMode: Provider.of<ModeProvider>(context).isDark
             ? ThemeMode.dark
             : ThemeMode.light,
         themeAnimationCurve: Curves.linear,

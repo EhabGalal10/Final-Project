@@ -1,22 +1,24 @@
 import 'package:flutter/material.dart';
+import 'package:shared_preferences/shared_preferences.dart';
 
 class ModeProvider with ChangeNotifier {
-  bool _lightModeEnabled = true;
+  bool _isDark = false;
 
-  bool get lightModeEnabled => _lightModeEnabled;
+  bool get isDark => _isDark;
 
-  set lightModeEnabled(bool value) {
-    _lightModeEnabled = value;
+  set isDark(bool value) {
+    _isDark = value;
   }
 
-  changeMode() {
-    if (_lightModeEnabled == true) {
-      _lightModeEnabled = false;
-      notifyListeners();
-    }
-    else if (_lightModeEnabled == false) {
-      _lightModeEnabled = true;
-            notifyListeners();
-    }
+  changeMode() async{
+    final SharedPreferences prefs = await SharedPreferences.getInstance();
+    _isDark = !_isDark;
+    prefs.setBool('isDark', _isDark);
+    notifyListeners();
+  }
+  getMode() async{
+    final SharedPreferences prefs = await SharedPreferences.getInstance();
+    _isDark = prefs.getBool('isDark') ?? false;
+    notifyListeners();
   }
 }

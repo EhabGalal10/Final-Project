@@ -15,7 +15,7 @@ class _CustomDrawerState extends State<CustomDrawer> {
   @override
   Widget build(BuildContext context) {
     var provider = Provider.of<ModeProvider>(context);
-    bool pvalue = provider.lightModeEnabled;
+    bool pvalue = provider.isDark;
     final theme = Theme.of(context);
 
     return Drawer(
